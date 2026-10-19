@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_dashboard" name="shell-type" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = {theme: {extend: {colors: {"surface-bright": "#f8f9ff", "tertiary": "#54615b", "surface-container-lowest": "#ffffff", "tertiary-container": "#92a099", "inverse-on-surface": "#eaf1ff", "background": "#f8f9ff", "primary": "#006e22", "on-surface-variant": "#3e4a3c", "primary-container": "#28b446", "tertiary-fixed-dim": "#bccac2", "surface-container": "#e6eeff", "on-secondary": "#ffffff", "primary-fixed-dim": "#5ce06c", "on-tertiary-container": "#2b3732", "outline-variant": "#bdcbb8", "surface-container-high": "#dee9fc", "secondary-container": "#aaf0b0", "inverse-primary": "#5ce06c", "secondary-fixed-dim": "#92d698", "tertiary-fixed": "#d8e6de", "on-error-container": "#93000a", "surface-container-low": "#eff4ff", "on-error": "#ffffff", "surface": "#f8f9ff", "on-primary-fixed-variant": "#005318", "error-container": "#ffdad6", "error": "#ba1a1a", "primary-fixed": "#7afd85", "on-primary-fixed": "#002105", "on-primary": "#ffffff", "surface-container-highest": "#d9e3f6", "on-tertiary": "#ffffff", "surface-dim": "#d0dbed", "on-secondary-fixed-variant": "#0b5223", "secondary": "#2a6b38", "on-tertiary-fixed-variant": "#3d4944", "inverse-surface": "#27313f", "outline": "#6d7b6a", "on-surface": "#121c2a", "surface-tint": "#006e22", "on-primary-container": "#003e0f", "on-secondary-fixed": "#002109", "on-background": "#121c2a", "secondary-fixed": "#adf3b3", "on-tertiary-fixed": "#121e19", "on-secondary-container": "#2e6f3c", "surface-variant": "#d9e3f6"}, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}, spacing: {"space-md": "1rem", "margin-mobile": "1rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-xl": "2rem", "margin": "2rem", "space-xs": "0.25rem", "gutter-mobile": "1rem"}, fontFamily: {"label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "tabular-kpi": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"]}, fontSize: {"label-md": ["0.75rem", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}], "headline-sm": ["1.125rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}], "label-sm": ["0.6875rem", {"lineHeight": "1.15", "letterSpacing": "0.04em", "fontWeight": "700"}], "body-md": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "body-lg": ["1rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "body-sm": ["0.75rem", {"lineHeight": "1.45", "letterSpacing": "0.01em", "fontWeight": "400"}], "tabular-kpi": ["1.75rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}], "headline-lg-mobile": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}], "headline-md": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "600"}], "display": ["3rem", {"lineHeight": "1.15", "letterSpacing": "-0.03em", "fontWeight": "700"}], "headline-lg": ["2rem", {"lineHeight": "1.25", "letterSpacing": "-0.02em", "fontWeight": "700"}], "label-lg": ["0.875rem", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}]}}}}</script>
+</head>
+
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+  <aside
+    class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between select-none">
+    <div class="flex flex-col h-full overflow-y-auto">
+      <div class="h-20 px-space-lg flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-space-sm"><img alt="SixAgo Brand Logo" class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XjSh1Wf-PVvWCsOGVQQrWui36Iwl-huN-FnUa6bj70OV-8HPfOP8LJELIvn_AiEyPAOBt4watHNhaRFkQGwh0WWBq7tU-h0ybJOLb5YNz36bFZWNRTlEBmGtQbtsWGTm81EFpAWeMunGr_O9eQkarCaM5bgpzoiuYyYfVegKGX2LTc88VqHDY13YLfmcqCeNBJ5_gqwwplydVlXgzx-WOGibr7BBCBNfxVCpLum7VYFjWQlv2uqFF87jg" />
+          <div class="flex flex-col"><span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">SixAgo</span><span
+              class="font-label-sm text-label-sm text-tertiary">Travel Governance</span></div>
+        </div><span
+          class="bg-surface-container-low text-secondary font-label-sm text-label-sm px-space-sm py-space-xs rounded-full">Enterprise</span>
+      </div>
+      <div class="px-space-md py-space-sm flex-1">
+        <nav class="space-y-space-md"
+          data-active-classes="bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm">
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Main
+            </div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="dashboard" href="#"><span class="font-label-lg text-label-lg">Dashboard</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="travel-requests" href="#"><span class="font-label-lg text-label-lg">Travel
+                Requests</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="approval-queue" href="#"><span class="font-label-lg text-label-lg">Approval Queue</span><span
+                class="bg-primary-container text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">5</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="travel-advances" href="#"><span class="font-label-lg text-label-lg">Travel
+                Advances</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="reimbursements" href="#"><span class="font-label-lg text-label-lg">Reimbursements</span></a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Management &amp; Policy</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="policies" href="#"><span class="font-label-lg text-label-lg">Policies</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="projects" href="#"><span class="font-label-lg text-label-lg">Projects</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="users-and-roles" href="#"><span class="font-label-lg text-label-lg">Users &amp;
+                Roles</span></a><a aria-current="page"
+              class="flex items-center justify-between px-space-md py-space-sm transition-all bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm"
+              data-path="approval-hierarchy-and-delegation" href="#"><span class="font-label-lg text-label-lg">Approval
+                Hierarchy &amp; Delegation</span></a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Analytics</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="reports-and-audit" href="#"><span class="font-label-lg text-label-lg">Reports &amp;
+                Audit</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="notifications" href="#"><span class="font-label-lg text-label-lg">Notifications</span></a>
+          </div>
+        </nav>
+      </div>
+      <div class="p-space-md m-space-md rounded-xl bg-surface-container-low shrink-0">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">help_center</span></div>
+          <div class="flex flex-col flex-1"><span class="font-label-md text-label-md text-on-surface">Enterprise Help
+              Desk</span><span class="font-body-sm text-body-sm text-tertiary">SLA 15-min Response</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="pl-72">
+    <header
+      class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-xl flex items-center justify-between">
+      <div class="flex items-center w-full max-w-lg">
+        <div class="relative w-full"><span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span><input
+            class="w-full pl-12 pr-space-md py-space-sm rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all"
+            placeholder="Cari perjalanan, tiket, ID request, atau karyawan..." type="text" /></div>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <div
+          class="hidden xl:flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low rounded-full">
+          <span class="material-symbols-outlined text-secondary text-[18px]">domain</span><span
+            class="font-label-md text-label-md text-on-surface">PT Nusantara Dinamika Tbk</span></div><button
+          class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:opacity-95 transition-all"><span
+            class="material-symbols-outlined text-[18px]">add</span><span>Request Baru</span></button><button
+          class="relative w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"><span
+            class="material-symbols-outlined text-[20px]">notifications</span><span
+            class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container"></span></button>
+        <div class="flex items-center gap-space-sm pl-space-sm"><img alt="Ratna Paramita"
+            class="w-8 h-8 rounded-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEMGYKyY9zw7L48nzXQcThDZxOVvDP7G21_emfexfptTZYkJKMI1QEVXzSoj-Myb1BIg0MoA5Y-2JRV_To09JzyJuX8WERVC5XkyGgJow7w5CFvqVE8UHuvpqeoX11aXHH7scn8PK55-K0Zaq0zORJ9QiCc0K63LTumJ1ygHG6Q8sdNEQY9ajN9vRx-APYo7KielcISkFykgN3O8MqfC14mXFWBNeInDxVxHaTh1forLNM1-pEdOvQHQ" />
+          <div class="hidden md:flex flex-col text-left"><span
+              class="font-label-md text-label-md text-on-surface leading-tight">Ratna Paramita</span><span
+              class="font-body-sm text-body-sm text-tertiary leading-tight">HR &amp; Travel Admin</span></div><span
+            class="material-symbols-outlined text-tertiary text-[18px] cursor-pointer">expand_more</span>
+        </div>
+      </div>
+    </header>
+    <main class="w-full pt-20 px-space-xl pb-space-xl bg-background">
+      <div class="flex flex-col w-full">
+        <!-- Breadcrumb & Header Section -->
+        <section class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg">
+          <div class="space-y-space-xs">
+            <nav class="flex items-center gap-space-xs font-label-md text-label-md text-tertiary">
+              <span class="hover:text-primary cursor-pointer transition-colors">Tata Kelola Kebijakan</span>
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              <span class="text-secondary font-semibold">Delegasi Kewenangan Otorisasi</span>
+            </nav>
+            <div class="flex items-center gap-space-sm">
+              <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Manajemen Delegasi
+                Persetujuan</h1>
+              <span
+                class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Live Sync
+              </span>
+            </div>
+            <p class="font-body-md text-body-md text-tertiary max-w-2xl">
+              Atur pelimpahan wewenang otorisasi perjalanan dinas sementara saat manager/approver cuti atau berhalangan,
+              dengan batas waktu dan audit trail ketat.
+            </p>
+          </div>
+          <!-- Action Bar -->
+          <div class="flex items-center gap-space-sm shrink-0">
+            <button
+              class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-surface-container-lowest text-secondary font-label-lg text-label-lg shadow-sm hover:bg-surface-container-low transition-all">
+              <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+              <span>Unduh Riwayat Audit Delegasi (PDF)</span>
+            </button>
+            <button
+              class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:brightness-105 active:scale-95 transition-all"
+              onclick="document.getElementById('modalDelegasi').classList.remove('hidden')">
+              <span class="material-symbols-outlined text-[20px]">add_task</span>
+              <span>+ Buat Delegasi Baru</span>
+            </button>
+          </div>
+        </section>
+        <!-- KPI Cards Matrix -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+          <!-- KPI 1 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+            <div
+              class="absolute -right-4 -top-4 w-20 h-20 bg-secondary-container/40 rounded-full blur-xl pointer-events-none">
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-semibold">Delegasi
+                Aktif</span>
+              <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[18px]">transfer_within_a_station</span>
+              </div>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-tabular-kpi text-tabular-kpi text-on-surface block">4 Delegasi</span>
+              <div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-secondary font-medium">
+                <span class="material-symbols-outlined text-[14px]">bolt</span>
+                <span>Otorisasi sementara aktif</span>
+              </div>
+            </div>
+          </div>
+          <!-- KPI 2 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+            <div class="flex items-center justify-between">
+              <span
+                class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-semibold">Terjadwal</span>
+              <div
+                class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-[18px]">schedule</span>
+              </div>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-tabular-kpi text-tabular-kpi text-on-surface block">2 Delegasi</span>
+              <div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-tertiary">
+                <span class="material-symbols-outlined text-[14px]">event_repeat</span>
+                <span>Cuti terencana mendatang</span>
+              </div>
+            </div>
+          </div>
+          <!-- KPI 3 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-semibold">Pengajuan
+                Terotorisasi</span>
+              <div class="w-8 h-8 rounded-full bg-secondary-container/40 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[18px]">verified_user</span>
+              </div>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-tabular-kpi text-tabular-kpi text-on-surface block">38 Request</span>
+              <div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-secondary font-medium">
+                <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                <span>Selesai bulan ini (+12%)</span>
+              </div>
+            </div>
+          </div>
+          <!-- KPI 4 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-semibold">Integritas
+                Delegasi</span>
+              <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[18px]">security</span>
+              </div>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-tabular-kpi text-tabular-kpi text-primary block">0 Kasus</span>
+              <div class="flex items-center gap-1.5 mt-1 font-body-sm text-body-sm text-secondary font-medium">
+                <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                <span>Aman 100% dari audit SLA</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Main Content Layout Grid -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+          <!-- Table Matrix Container (Left/Wide) -->
+          <div class="xl:col-span-8 flex flex-col gap-space-lg">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+              <!-- Table Search / Filter Header -->
+              <div
+                class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-lowest">
+                <div class="flex items-center gap-space-sm">
+                  <span class="font-headline-sm text-headline-sm text-on-surface">Jadwal &amp; Riwayat Delegasi
+                    Aktif</span>
+                  <span
+                    class="px-space-sm py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm">4
+                    Berjalan</span>
+                </div>
+                <div class="flex items-center gap-space-xs">
+                  <div class="relative w-48 sm:w-60">
+                    <span
+                      class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-tertiary text-[18px]">filter_list</span>
+                    <input
+                      class="w-full pl-9 pr-space-md py-1.5 rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                      placeholder="Filter pejabat..." type="text" />
+                  </div>
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary hover:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">refresh</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Delegation Data Table -->
+              <div class="w-full overflow-x-auto">
+                <table class="w-full text-left font-body-sm text-body-sm">
+                  <thead>
+                    <tr
+                      class="bg-surface-container-low font-label-sm text-label-sm text-tertiary uppercase tracking-wider">
+                      <th class="py-space-md px-space-lg">Pemberi Delegasi</th>
+                      <th class="py-space-md px-space-md">Penerima (Proxy)</th>
+                      <th class="py-space-md px-space-md">Cakupan &amp; Limit</th>
+                      <th class="py-space-md px-space-md">Masa Efektif</th>
+                      <th class="py-space-md px-space-md">Alasan</th>
+                      <th class="py-space-md px-space-md">Status</th>
+                      <th class="py-space-md px-space-lg text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-transparent">
+                    <!-- Row 1: Aktif -->
+                    <tr class="hover:bg-surface-container-low/60 transition-colors">
+                      <td class="py-space-md px-space-lg">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0"
+                            data-alt="Corporate headshot portrait of Hendra Gunawan, Indonesian male IT Executive with glasses in professional navy suit on bright studio background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT4RuzCyMlL-0l29fkD81nvzT3XSuT9VIOGixVpQQ2QqTJAcMOtpruOcgyLvkeQsFkU0Wg6sUi62JsmreeS4-QoT0GGaSwDDgbWRpavlqAdr-xPg8uSTyt4FF0KEz1Go5xopqtWuiNgQBxTP8C9zB2NqjKRtgf6JXsmUaLGbERYzerphuFBiXo0BAgw7UmXKRNphb0t5y-gDjxAxG6rFnbnTpa45LPi5uclMbYtd9wBAP8WREiB6gWpQ" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Hendra Gunawan</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Head of IT Ops • Tech</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-8 h-8 rounded-full object-cover shrink-0"
+                            data-alt="Professional corporate headshot of Budi Santoso, Infrastructure Lead engineer smiling confidently with clean background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAroKYs9o_-NTGcwrlElTPlvR9H7l5WXp-NENsuvWmhrtAcNh2oZcH70sTnIEkLV9kdc-AGKJ7NXP2zzZ5kCP1E62WkkloJTvssr3SK8RioK-L-77HfTPj7Tu0hOtvjLzj5mAwAaq-PBykK6pLasnu08VnfrakHEMzp9WdEOjCxkHUZNIyqNNKhlidjIBJU7MQOzIQM2EyqfKBSqDBK_9Cx8M8MEs1dp3Yq2br_NY7oFQGtNmmkyU6RsQ" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Budi Santoso</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Lead Infra Specialist</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex flex-col gap-1 items-start">
+                          <span
+                            class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Penuh
+                            (Full Approval)</span>
+                          <span class="text-tertiary text-xs">Maks. Rp 25.000.000</span>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md whitespace-nowrap">
+                        <div class="font-label-md text-label-md text-on-surface">18 Okt - 25 Okt 2024</div>
+                        <span
+                          class="inline-block px-1.5 py-0.5 rounded bg-surface-container text-secondary font-label-sm text-label-sm text-[10px] mt-0.5">Sisa
+                          3 Hari</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Cuti
+                          Tahunan</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1.5 w-max">
+                          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                          Aktif Berjalan
+                        </span>
+                      </td>
+                      <td class="py-space-md px-space-lg text-right">
+                        <div class="flex items-center justify-end gap-1.5">
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-secondary flex items-center justify-center hover:bg-secondary-container transition-colors"
+                            title="Ubah Delegasi">
+                            <span class="material-symbols-outlined text-[16px]">edit</span>
+                          </button>
+                          <button
+                            class="w-8 h-8 rounded-full bg-error-container/60 text-error flex items-center justify-center hover:bg-error-container transition-colors"
+                            title="Cabut Delegasi (Revoke)">
+                            <span class="material-symbols-outlined text-[16px]">cancel</span>
+                          </button>
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high transition-colors"
+                            title="Audit Log Details">
+                            <span class="material-symbols-outlined text-[16px]">history</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- Row 2: Aktif -->
+                    <tr class="hover:bg-surface-container-low/60 transition-colors">
+                      <td class="py-space-md px-space-lg">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0"
+                            data-alt="Studio portrait of Ir. Michael Wijaya, senior Indonesian technology executive and VP Engineering in sharp charcoal blazer"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxa2wORUQ77PQEAnDreLFctnk-2FGkjFY1Kz-NvPiidust_351rriG-MSYyqebv_jCwj57o9WvhJvFRKNQyMxUCFICJeqm03XtljBfvVOopQzfbwYKd6r344K1A9zLmDYeSaQfu83Tlr3lNbu5DYYgYLfyHbkl-uS2iMPXGkQy3QK6COjQBCSGeR-bEIUbnalHT6ah9heifY2TQrHiD7FWCrLOT-16CSOr5isePgCzCMNi_sGY2tv0Ww" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Ir. Michael Wijaya
+                            </div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">VP Engineering • Eng</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-8 h-8 rounded-full object-cover shrink-0"
+                            data-alt="Professional business profile photo of Faisal Rahman, confident corporate senior manager in modern light grey blazer"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPXw3pUdJ3LmvzSMl4zDyvy6b6o_THEQQ-3gx-wI43LITQ8jcuDNOy5Qqsz_pEtXYkB7rEjhqzsOTkKmpr3DFIw4DsPxPJZUicAvQhh8HQkHUXNwdr2FaplN2nJ2gzfxC6A9enF7SUFRfEPOXemtCdcNO1TuB4UpuAv7NrhuVs4swTDqGVuY6MjzRIAbXs8MVFYiHoXK2ZP9Te8wDfW6obq0nQMLAcNV6hPOJ8e99nunS9j5_Y_iudCA" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Faisal Rahman</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Senior Engineering Mgr</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex flex-col gap-1 items-start">
+                          <span
+                            class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Khusus
+                            Tiket &amp; Hotel</span>
+                          <span class="text-tertiary text-xs">Maks. Rp 15.000.000</span>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md whitespace-nowrap">
+                        <div class="font-label-md text-label-md text-on-surface">20 Okt - 28 Okt 2024</div>
+                        <span
+                          class="inline-block px-1.5 py-0.5 rounded bg-surface-container text-secondary font-label-sm text-label-sm text-[10px] mt-0.5">Sisa
+                          6 Hari</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Dinas
+                          Luar Negeri</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1.5 w-max">
+                          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                          Aktif Berjalan
+                        </span>
+                      </td>
+                      <td class="py-space-md px-space-lg text-right">
+                        <div class="flex items-center justify-end gap-1.5">
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-secondary flex items-center justify-center hover:bg-secondary-container transition-colors"
+                            title="Ubah Delegasi">
+                            <span class="material-symbols-outlined text-[16px]">edit</span>
+                          </button>
+                          <button
+                            class="w-8 h-8 rounded-full bg-error-container/60 text-error flex items-center justify-center hover:bg-error-container transition-colors"
+                            title="Cabut Delegasi">
+                            <span class="material-symbols-outlined text-[16px]">cancel</span>
+                          </button>
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high transition-colors"
+                            title="Audit Log Details">
+                            <span class="material-symbols-outlined text-[16px]">history</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- Row 3: Terjadwal -->
+                    <tr class="hover:bg-surface-container-low/60 transition-colors">
+                      <td class="py-space-md px-space-lg">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-9 h-9 rounded-full object-cover shadow-sm shrink-0"
+                            data-alt="Portrait of Dewi Saraswati, female Indonesian Enterprise Director with elegant business attire and warm confident smile"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbw_SdaSnWtdVqfvmv46StD8VBTcDmXe9OmBoC164Q1OqQrbxpCK77VR8fhgCstpbBAsU-xOhdfp_lEk919RZGRTWAg38zVkKdyc0IKkkEiNUEdo91-LxV7M4YE_gKV8YmZ4kLkQt7w-7G79Xsv8maIHSUbVw7xJExKY5CSORCWBHd4yPMhaz3Q7O-s1kIWp4bCZv-aMPVKdiHUIEsDxDnMP853yRJJteuiw4XuWl2NNAvitbjw1u3QQ" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Dewi Saraswati</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Enterprise Director • C-Suite
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-8 h-8 rounded-full object-cover shrink-0"
+                            data-alt="Portrait of Ratna Paramita, female Indonesian HR professional with modern hijab and warm executive demeanor"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdFSCiTrIVlVs7PIsEgfUPbRuqnArgocPSMEMNdwDjUMbPUEWu5aNco2hgnzks28T4nsWAQtRvEgp1EGKKGBR84gTBbspDW2D3tfufmh4Z0F042XOKnACkzSfVQ-vlQPwKaMGtLXjWlGe3WiNOvEqNTllRyzYSFt-stvMZtgvxnoWrBTKR3bhv3Kt0rGW_cRCgcwe1FnpNXq7lstWuGZERaQZg6Dv-wG-veyDhIyK78irM_1V6R0PHkA" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Ratna Paramita</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Head of HR &amp; Governance
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex flex-col gap-1 items-start">
+                          <span
+                            class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Penuh
+                            (Full Approval)</span>
+                          <span class="text-tertiary text-xs">Maks. Rp 50.000.000</span>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md whitespace-nowrap">
+                        <div class="font-label-md text-label-md text-on-surface">01 Nov - 10 Nov 2024</div>
+                        <span
+                          class="inline-block px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm text-[10px] mt-0.5">Mulai
+                          dlm 9 hari</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Cuti
+                          Tahunan</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-1 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm flex items-center gap-1.5 w-max">
+                          <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                          Terjadwal
+                        </span>
+                      </td>
+                      <td class="py-space-md px-space-lg text-right">
+                        <div class="flex items-center justify-end gap-1.5">
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-secondary flex items-center justify-center hover:bg-secondary-container transition-colors"
+                            title="Ubah Delegasi">
+                            <span class="material-symbols-outlined text-[16px]">edit</span>
+                          </button>
+                          <button
+                            class="w-8 h-8 rounded-full bg-error-container/60 text-error flex items-center justify-center hover:bg-error-container transition-colors"
+                            title="Cabut Delegasi">
+                            <span class="material-symbols-outlined text-[16px]">cancel</span>
+                          </button>
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high transition-colors"
+                            title="Audit Log Details">
+                            <span class="material-symbols-outlined text-[16px]">history</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- Row 4: Selesai / Expired -->
+                    <tr class="hover:bg-surface-container-low/60 transition-colors opacity-70">
+                      <td class="py-space-md px-space-lg">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-9 h-9 rounded-full object-cover shrink-0 grayscale"
+                            data-alt="Portrait of senior corporate finance director with silver hair and tailored navy executive blazer"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Ha6Se7IsoupntAg5nHMcjF6CWbqX0HqJ8UBB4Diqsg9twHoAD4pocaZAhJayGq79OG1J2tIJ8RLOuv467nF0W0PGqXVVLMf4T_Q8QOZWMAeC8AuqookIvPqHZvsEeASOCcVdrB5mgRxGZjisiR00N_PfYdhlQLCf5F_s-P6lDh55ZgFcaZIoF4NyYKMXPysMUpZWFqN-g2rO4Gdunv1k_MFXgKmOhAb6er8T5O05O97tx3pt3QcXUg" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Agus Prayogo</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Finance Controller • Fin</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex items-center gap-space-sm">
+                          <img class="w-8 h-8 rounded-full object-cover shrink-0 grayscale"
+                            data-alt="Portrait of junior corporate accounting manager with formal tie and spectacles"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAypLC125DCYGEUhkjyDVwZV9b3Mal8vg2cAVqqVnI3_45Yr1PXCvNuG2KnSltix_NOqD8q17HrusoKPs_eckkNhWFenxnvc_tJM9_BKckc9lYFcVlWdX6pL5232BUs532_uM7yPt2V9FiCUO8i6o4wragqlRgbSFYTPS8FFKJngjjFkzpuucwk7H20N-aH8hSNoZYpWY5HwiGxqyFc4cuC2VPPJ49dBbyQj0HygkruXelJJclhUpw_Ow" />
+                          <div>
+                            <div class="font-label-md text-label-md text-on-surface leading-tight">Doni Kusuma</div>
+                            <div class="text-tertiary font-body-sm text-body-sm text-xs">Treasury Lead</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <div class="flex flex-col gap-1 items-start">
+                          <span
+                            class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-label-sm">Reimbursement
+                            Only</span>
+                          <span class="text-tertiary text-xs">Maks. Rp 10.000.000</span>
+                        </div>
+                      </td>
+                      <td class="py-space-md px-space-md whitespace-nowrap">
+                        <div class="font-label-md text-label-md text-tertiary">01 Okt - 07 Okt 2024</div>
+                        <span
+                          class="inline-block px-1.5 py-0.5 rounded bg-surface-container-low text-tertiary font-label-sm text-label-sm text-[10px] mt-0.5">Kedaluwarsa</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-0.5 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm">Sakit
+                          / Izin Medis</span>
+                      </td>
+                      <td class="py-space-md px-space-md">
+                        <span
+                          class="px-space-sm py-1 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm flex items-center gap-1.5 w-max">
+                          <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                          Kedaluwarsa
+                        </span>
+                      </td>
+                      <td class="py-space-md px-space-lg text-right">
+                        <div class="flex items-center justify-end gap-1.5">
+                          <button
+                            class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high transition-colors"
+                            title="Audit Log Details">
+                            <span class="material-symbols-outlined text-[16px]">history</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Table Footer Pagination & Meta -->
+              <div
+                class="p-space-md bg-surface-container-lowest flex items-center justify-between font-body-sm text-body-sm text-tertiary">
+                <div class="flex items-center gap-1">
+                  <span>Menampilkan 4 dari 24 riwayat delegasi</span>
+                </div>
+                <div class="flex items-center gap-space-xs">
+                  <button
+                    class="px-space-md py-1 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-all text-xs font-semibold">Sebelumnya</button>
+                  <span class="px-space-sm font-label-md text-label-md text-on-surface">1</span>
+                  <button
+                    class="px-space-md py-1 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-all text-xs font-semibold">Selanjutnya</button>
+                </div>
+              </div>
+            </div>
+            <!-- Live Audit Stream Panel -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+              <div class="flex items-center justify-between mb-space-md">
+                <div class="flex items-center gap-space-sm">
+                  <div
+                    class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                    <span class="material-symbols-outlined text-[18px]">verified</span>
+                  </div>
+                  <div>
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface">Audit Trail Otorisasi Delegasi Terkini
+                    </h2>
+                    <p class="text-tertiary font-body-sm text-body-sm">Catatan forensik otomatis setiap kali tiket
+                      disetujui atas nama delegator.</p>
+                  </div>
+                </div>
+                <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Imutabel
+                  &amp; Enkripsi SHA-256</span>
+              </div>
+              <div class="space-y-space-sm">
+                <div
+                  class="p-space-md rounded-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container transition-colors">
+                  <div class="flex items-center gap-space-md">
+                    <div class="w-2 h-2 rounded-full bg-primary shrink-0"></div>
+                    <div>
+                      <span class="font-label-md text-label-md text-on-surface">Budi Santoso menyetujui TR-84920 (Flight
+                        CGK-DPS) a/n Hendra Gunawan</span>
+                      <div class="text-tertiary text-xs mt-0.5">Pemohon: Ahmad Fauzi (DevOps) • Total: Rp 2.450.000 •
+                        Kode Kebijakan: POL-TRAVEL-TECH-01</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-space-md shrink-0">
+                    <span class="text-xs text-tertiary font-mono">Hari ini, 11:42 WIB</span>
+                    <span
+                      class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm text-xs font-semibold">Valid
+                      Delegated</span>
+                  </div>
+                </div>
+                <div
+                  class="p-space-md rounded-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container transition-colors">
+                  <div class="flex items-center gap-space-md">
+                    <div class="w-2 h-2 rounded-full bg-primary shrink-0"></div>
+                    <div>
+                      <span class="font-label-md text-label-md text-on-surface">Faisal Rahman menyetujui Penambahan
+                        Hotel TR-84812 a/n Ir. Michael Wijaya</span>
+                      <div class="text-tertiary text-xs mt-0.5">Pemohon: Sinta Melinda (QA) • Total: Rp 4.120.000 •
+                        Hotel Harris Bali</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-space-md shrink-0">
+                    <span class="text-xs text-tertiary font-mono">Kemarin, 16:15 WIB</span>
+                    <span
+                      class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm text-xs font-semibold">Valid
+                      Delegated</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Right Side: Fast Delegation Form Card -->
+          <div class="xl:col-span-4 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+            <div class="flex items-center justify-between pb-space-md mb-space-md">
+              <div class="flex items-center gap-space-sm">
+                <div
+                  class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined text-[18px]">assignment_ind</span>
+                </div>
+                <div>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">Form Delegasi Sementara</h2>
+                  <span class="text-tertiary text-xs">Atur mandat otorisasi instan</span>
+                </div>
+              </div>
+              <span
+                class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Prosedur
+                ISO</span>
+            </div>
+            <form class="space-y-space-md"
+              onsubmit="event.preventDefault(); alert('Delegasi kewenangan berhasil diaktifkan dengan audit log tercatat.');">
+              <!-- Pemberi Wewenang -->
+              <div class="space-y-1">
+                <label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+                  <span>Pemberi Kewenangan (Delegator)</span>
+                  <span class="text-xs text-secondary font-medium">User Terverifikasi</span>
+                </label>
+                <div class="relative">
+                  <select
+                    class="w-full h-11 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm pr-10">
+                    <option selected="">Hendra Gunawan (Head of IT Ops)</option>
+                    <option>Ir. Michael Wijaya (VP Engineering)</option>
+                    <option>Dewi Saraswati (Enterprise Director)</option>
+                    <option>Ratna Paramita (HR Admin)</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-tertiary pointer-events-none text-[20px]">unfold_more</span>
+                </div>
+              </div>
+              <!-- Penerima Wewenang (Proxy) -->
+              <div class="space-y-1">
+                <label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+                  <span>Penerima Mandat (Delegatee / Proxy)</span>
+                  <span class="text-xs text-tertiary">Setara / Deputy</span>
+                </label>
+                <div class="relative">
+                  <select
+                    class="w-full h-11 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-lowest focus:outline-none transition-all shadow-sm pr-10">
+                    <option disabled="" selected="">Pilih pejabat penerima kuasa...</option>
+                    <option>Budi Santoso (Lead Infra Specialist)</option>
+                    <option>Faisal Rahman (Senior Engineering Mgr)</option>
+                    <option>Ratna Paramita (HR &amp; Governance Lead)</option>
+                    <option>Agus Salim (Operations Manager)</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-tertiary pointer-events-none text-[20px]">group_add</span>
+                </div>
+              </div>
+              <!-- Cakupan Otorisasi -->
+              <div class="space-y-1">
+                <label class="font-label-md text-label-md text-on-surface">Cakupan Kewenangan Persetujuan</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <label
+                    class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+                    <input checked="" class="accent-primary" name="scope" type="radio" />
+                    <span class="text-xs font-semibold text-on-surface">Penuh (Full)</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+                    <input class="accent-primary" name="scope" type="radio" />
+                    <span class="text-xs font-semibold text-on-surface">Tiket &amp; Hotel</span>
+                  </label>
+                </div>
+              </div>
+              <!-- Rentang Tanggal -->
+              <div class="grid grid-cols-2 gap-space-sm">
+                <div class="space-y-1">
+                  <label class="font-label-md text-label-md text-on-surface">Mulai Berlaku</label>
+                  <input
+                    class="w-full h-11 px-3 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:bg-surface-container-lowest focus:outline-none shadow-sm"
+                    type="date" value="2024-10-25" />
+                </div>
+                <div class="space-y-1">
+                  <label class="font-label-md text-label-md text-on-surface">Berakhir Pada</label>
+                  <input
+                    class="w-full h-11 px-3 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:bg-surface-container-lowest focus:outline-none shadow-sm"
+                    type="date" value="2024-11-02" />
+                </div>
+              </div>
+              <!-- Batasan Anggaran Per Transaksi -->
+              <div class="space-y-1">
+                <label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+                  <span>Batas Nilai Anggaran Maksimal</span>
+                  <span class="text-xs text-tertiary">Per permohonan</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 font-semibold text-secondary text-sm">Rp</span>
+                  <input
+                    class="w-full h-11 pl-12 pr-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md font-semibold focus:bg-surface-container-lowest focus:outline-none shadow-sm"
+                    type="text" value="25.000.000" />
+                </div>
+              </div>
+              <!-- Alasan Pelimpahan -->
+              <div class="space-y-1">
+                <label class="font-label-md text-label-md text-on-surface">Alasan Pelimpahan Wewenang</label>
+                <textarea
+                  class="w-full p-3 rounded-xl bg-surface-container-low text-on-surface placeholder-tertiary font-body-sm text-body-sm focus:bg-surface-container-lowest focus:outline-none shadow-sm resize-none"
+                  placeholder="Tuliskan catatan formal atau nomor surat izin cuti..." rows="3">Cuti tahunan ke luar
+                  kota. Semua persetujuan budget operasional di delegasikan penuh.</textarea>
+              </div>
+              <!-- Compliance Checkbox -->
+              <div class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-space-sm">
+                <input checked="" class="mt-1 accent-primary shrink-0" id="complianceCheck" type="checkbox" />
+                <label class="text-xs text-on-surface cursor-pointer leading-relaxed" for="complianceCheck">
+                  Saya mengonfirmasi pelimpahan ini sesuai regulasi internal perusahaan dan seluruh tindakan proxy akan
+                  tercatat pada <strong class="text-secondary font-semibold">Audit Governance Trail</strong>.
+                </label>
+              </div>
+              <!-- Submit & Reset Buttons -->
+              <div class="pt-space-xs space-y-space-xs">
+                <button
+                  class="w-full py-3 px-space-md rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-sm hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+                  type="submit">
+                  <span class="material-symbols-outlined text-[20px]">lock_open</span>
+                  <span>Aktifkan Delegasi Otorisasi</span>
+                </button>
+                <button
+                  class="w-full py-2.5 px-space-md rounded-full bg-surface-container-low text-tertiary font-label-md text-label-md hover:bg-surface-container-high transition-all"
+                  type="reset">
+                  Batal &amp; Reset Form
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Modal Delegasi Cepat (Hidden by default, triggered via Top Button) -->
+        <div
+          class="hidden fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          id="modalDelegasi">
+          <div class="bg-surface-container-lowest rounded-2xl p-space-xl max-w-lg w-full shadow-2xl space-y-space-md">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-space-sm">
+                <div
+                  class="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined text-[22px]">verified_user</span>
+                </div>
+                <div>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface">Konfirmasi Pembuatan Delegasi</h3>
+                  <span class="text-xs text-tertiary">Kewenangan Approval Perjalanan</span>
+                </div>
+              </div>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary hover:text-on-surface"
+                onclick="document.getElementById('modalDelegasi').classList.add('hidden')">
+                <span class="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+            <p class="font-body-md text-body-md text-tertiary">
+              Anda akan mengalihkan otoritas persetujuan anggaran dan tiket perjalanan kepada deputi pilihan Anda.
+              Pastikan tanggal dan batas pengeluaran sudah terverifikasi.
+            </p>
+            <div class="p-space-md rounded-xl bg-surface-container-low space-y-2">
+              <div class="flex justify-between text-xs">
+                <span class="text-tertiary">Petugas Aktif:</span>
+                <span class="font-semibold text-on-surface">Hendra Gunawan (Head of IT Ops)</span>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="text-tertiary">Status SLA:</span>
+                <span class="text-secondary font-semibold">15 Menit Rata-rata Tanggapan</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-end gap-space-sm pt-space-xs">
+              <button
+                class="px-space-lg py-2.5 rounded-full bg-surface-container text-tertiary font-label-md text-label-md hover:bg-surface-container-high transition-all"
+                onclick="document.getElementById('modalDelegasi').classList.add('hidden')">
+                Batal
+              </button>
+              <button
+                class="px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-bold shadow-sm hover:brightness-105 transition-all"
+                onclick="document.getElementById('modalDelegasi').classList.add('hidden'); alert('Delegasi berhasil diajukan dan menunggu tandatangan digital penerima.');">
+                Lanjutkan Pelimpahan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_blank" name="shell-type" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = {theme: {extend: {colors: {"background": "#f8f9ff", "on-error-container": "#93000a", "surface-tint": "#006e22", "primary-fixed-dim": "#5ce06c", "surface-container-high": "#dee9fc", "primary": "#006e22", "tertiary-fixed-dim": "#bccac2", "tertiary-fixed": "#d8e6de", "on-primary": "#ffffff", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#0b5223", "on-surface": "#121c2a", "surface-container-lowest": "#ffffff", "on-background": "#121c2a", "inverse-surface": "#27313f", "surface-container-low": "#eff4ff", "tertiary": "#54615b", "secondary-fixed-dim": "#92d698", "inverse-primary": "#5ce06c", "surface-bright": "#f8f9ff", "outline": "#6d7b6a", "on-primary-fixed-variant": "#005318", "surface-container": "#e6eeff", "primary-container": "#28b446", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#3d4944", "tertiary-container": "#92a099", "on-error": "#ffffff", "on-secondary-container": "#2e6f3c", "on-primary-container": "#003e0f", "primary-fixed": "#7afd85", "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "surface-variant": "#d9e3f6", "outline-variant": "#bdcbb8", "surface-dim": "#d0dbed", "on-primary-fixed": "#002105", "surface-container-highest": "#d9e3f6", "secondary-fixed": "#adf3b3", "secondary-container": "#aaf0b0", "surface": "#f8f9ff", "on-surface-variant": "#3e4a3c", "secondary": "#2a6b38", "on-tertiary-container": "#2b3732", "error": "#ba1a1a", "on-secondary-fixed": "#002109", "on-tertiary-fixed": "#121e19"}, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}, spacing: {"gutter": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin": "2rem", "space-xl": "2rem", "margin-mobile": "1rem"}, fontFamily: {"display": ["Plus Jakarta Sans"], "tabular-kpi": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"]}, fontSize: {"display": ["3rem", {"lineHeight": "1.15", "letterSpacing": "-0.03em", "fontWeight": "700"}], "tabular-kpi": ["1.75rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-sm": ["0.75rem", {"lineHeight": "1.45", "letterSpacing": "0.01em", "fontWeight": "400"}], "body-md": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "headline-lg-mobile": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}], "headline-md": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "600"}], "headline-sm": ["1.125rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}], "label-lg": ["0.875rem", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}], "label-md": ["0.75rem", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}], "body-lg": ["1rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "label-sm": ["0.6875rem", {"lineHeight": "1.15", "letterSpacing": "0.04em", "fontWeight": "700"}], "headline-lg": ["2rem", {"lineHeight": "1.25", "letterSpacing": "-0.02em", "fontWeight": "700"}]}}}}</script>
+</head>
+
+<body
+  class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen flex items-center justify-center p-space-md">
+  <main class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] p-space-xl">
+    <div class="flex flex-col w-full">
+      <div class="relative flex flex-col items-center justify-center w-full">
+        <!-- Ambient organic green backdrop glows -->
+        <div
+          class="absolute -top-16 -left-12 w-48 h-48 bg-primary-container/10 rounded-full blur-2xl pointer-events-none">
+        </div>
+        <div
+          class="absolute -bottom-16 -right-12 w-56 h-56 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none">
+        </div>
+        <!-- Header / Brand Section -->
+        <div class="flex flex-col items-center text-center mb-space-lg relative z-10">
+          <!-- Logo Container with crisp micro elevation -->
+          <div class="relative group mb-space-sm">
+            <div
+              class="w-16 h-16 rounded-2xl bg-surface-container-low shadow-sm flex items-center justify-center p-space-xs transition-transform duration-300 group-hover:scale-105">
+              <img alt="SixAgo Brand Logo" class="w-full h-full object-contain rounded-lg"
+                src="https://lh3.googleusercontent.com/aida/AEtjO1XjSh1Wf-PVvWCsOGVQQrWui36Iwl-huN-FnUa6bj70OV-8HPfOP8LJELIvn_AiEyPAOBt4watHNhaRFkQGwh0WWBq7tU-h0ybJOLb5YNz36bFZWNRTlEBmGtQbtsWGTm81EFpAWeMunGr_O9eQkarCaM5bgpzoiuYyYfVegKGX2LTc88VqHDY13YLfmcqCeNBJ5_gqwwplydVlXgzx-WOGibr7BBCBNfxVCpLum7VYFjWQlv2uqFF87jg" />
+            </div>
+            <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5 items-center justify-center">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+          </div>
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm mb-space-xs">
+            <span class="material-symbols-outlined text-body-sm text-primary"
+              style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+            <span>ENTERPRISE GOVERNANCE</span>
+          </div>
+          <h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Masuk ke SixAgo Portal</h1>
+          <p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mt-1">Sistem Manajemen Perjalanan Dinas
+            Korporat Terpadu</p>
+        </div>
+        <!-- Form Container -->
+        <form class="w-full space-y-space-md relative z-10" id="loginForm" onsubmit="event.preventDefault();">
+          <!-- Email / NIK Field -->
+          <div class="space-y-1.5">
+            <label class="block font-label-md text-label-md text-on-surface" for="corporateId">Email Perusahaan /
+              NIK</label>
+            <div class="relative flex items-center">
+              <span
+                class="material-symbols-outlined absolute left-3.5 text-tertiary pointer-events-none text-body-lg">alternate_email</span>
+              <input
+                class="w-full pl-10 pr-4 py-2.5 rounded-full bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 shadow-sm focus:outline-none focus:bg-surface-container-lowest focus:shadow-md transition-all duration-200"
+                id="corporateId" name="corporateId" placeholder="nama@perusahaan.co.id" required="" type="text" />
+            </div>
+            <p class="text-body-sm font-body-sm text-outline px-2">Gunakan akun SSO resmi atau NIK 8-digit terdaftar</p>
+          </div>
+          <!-- Password Field -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between px-1">
+              <label class="block font-label-md text-label-md text-on-surface" for="passwordField">Kata Sandi</label>
+              <a class="font-label-md text-label-md text-primary hover:text-on-secondary-container transition-colors duration-150"
+                href="#">Lupa Password?</a>
+            </div>
+            <div class="relative flex items-center">
+              <span
+                class="material-symbols-outlined absolute left-3.5 text-tertiary pointer-events-none text-body-lg">lock</span>
+              <input
+                class="w-full pl-10 pr-11 py-2.5 rounded-full bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline/70 shadow-sm focus:outline-none focus:bg-surface-container-lowest focus:shadow-md transition-all duration-200"
+                id="passwordField" name="password" placeholder="••••••••••••" required="" type="password" />
+              <button aria-label="Tampilkan atau sembunyikan password"
+                class="absolute right-3 p-1 rounded-full text-tertiary hover:text-on-surface hover:bg-surface-container transition-colors"
+                id="togglePassword" type="button">
+                <span class="material-symbols-outlined text-body-lg" id="passwordEyeIcon">visibility</span>
+              </button>
+            </div>
+          </div>
+          <!-- Remember device checkbox -->
+          <div class="flex items-center justify-between pt-0.5">
+            <label class="flex items-center gap-2.5 cursor-pointer group select-none">
+              <div class="relative flex items-center justify-center">
+                <input class="peer sr-only" id="rememberMe" name="rememberMe" type="checkbox" />
+                <div
+                  class="w-4 h-4 rounded bg-surface-container-low peer-checked:bg-primary transition-colors duration-200 flex items-center justify-center">
+                  <span
+                    class="material-symbols-outlined text-body-sm text-on-primary opacity-0 peer-checked:opacity-100 transition-opacity duration-150"
+                    style="font-size: 14px;">check</span>
+                </div>
+              </div>
+              <span
+                class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Ingat
+                saya di perangkat ini</span>
+            </label>
+            <span
+              class="inline-flex items-center gap-1 text-[11px] font-label-sm text-tertiary bg-surface-container-low px-2 py-0.5 rounded-full">
+              <span class="material-symbols-outlined text-[13px] text-primary">verified_user</span>
+              Tersertifikasi
+            </span>
+          </div>
+          <!-- Main Action Buttons -->
+          <div class="pt-2 space-y-2.5">
+            <button
+              class="w-full py-3 px-6 rounded-full bg-primary-container hover:bg-primary active:scale-[0.98] text-on-primary font-label-lg text-label-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer"
+              id="btnSubmit" type="submit">
+              <span>Masuk ke Akun</span>
+              <span class="material-symbols-outlined text-body-lg">arrow_forward</span>
+            </button>
+            <!-- Divider with clean corporate line -->
+            <div class="relative flex items-center justify-center my-3">
+              <div class="w-full h-px bg-surface-container-high"></div>
+              <span
+                class="absolute px-3 bg-surface-container-lowest font-label-sm text-label-sm text-tertiary uppercase tracking-wider">atau</span>
+            </div>
+            <!-- Single Sign-On (SSO) Button -->
+            <button
+              class="w-full py-2.5 px-4 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md shadow-sm hover:shadow active:scale-[0.98] flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer"
+              id="btnSSO" type="button">
+              <div class="flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" viewbox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                  <rect fill="#F25022" height="9" width="9" x="1" y="1"></rect>
+                  <rect fill="#7FBA00" height="9" width="9" x="11" y="1"></rect>
+                  <rect fill="#00A4EF" height="9" width="9" x="1" y="11"></rect>
+                  <rect fill="#FFB900" height="9" width="9" x="11" y="11"></rect>
+                </svg>
+              </div>
+              <span>Masuk dengan Single Sign-On (SSO)</span>
+            </button>
+          </div>
+        </form>
+        <!-- Security & Trust Indicators -->
+        <div
+          class="mt-space-lg pt-space-md w-full border-t border-surface-container-low flex flex-col items-center gap-space-sm relative z-10">
+          <!-- Compliance Badges -->
+          <div class="flex flex-wrap items-center justify-center gap-2 w-full">
+            <div
+              class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[15px] text-primary"
+                style="font-variation-settings: 'FILL' 1;">lock</span>
+              <span>256-Bit SSL Encrypted</span>
+            </div>
+            <div
+              class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[15px] text-primary"
+                style="font-variation-settings: 'FILL' 1;">format_image_left</span>
+              <span>ISO 27001 Certified</span>
+            </div>
+          </div>
+          <!-- Helpdesk Support Notice -->
+          <div class="flex items-center gap-1.5 text-center text-body-sm font-body-sm text-tertiary">
+            <span class="material-symbols-outlined text-body-sm text-outline">support_agent</span>
+            <span>Butuh bantuan? Hubungi <span class="font-label-md text-on-surface">IT Support ext. 402</span> atau <a
+                class="text-primary hover:underline" href="#">portal tiket</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        (function () {
+          const togglePasswordBtn = document.getElementById('togglePassword');
+          const passwordField = document.getElementById('passwordField');
+          const passwordEyeIcon = document.getElementById('passwordEyeIcon');
+
+          if (togglePasswordBtn && passwordField && passwordEyeIcon) {
+            togglePasswordBtn.addEventListener('click', function () {
+              const isPassword = passwordField.getAttribute('type') === 'password';
+              passwordField.setAttribute('type', isPassword ? 'text' : 'password');
+              passwordEyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+            });
+          }
+
+          const ssoButton = document.getElementById('btnSSO');
+          if (ssoButton) {
+            ssoButton.addEventListener('click', function () {
+              ssoButton.classList.add('opacity-75');
+              const originalHtml = ssoButton.innerHTML;
+              ssoButton.innerHTML = '<span class="material-symbols-outlined text-body-sm animate-spin">progress_activity</span><span>Menghubungkan ke SSO Identity Provider...</span>';
+              setTimeout(() => {
+                ssoButton.innerHTML = originalHtml;
+                ssoButton.classList.remove('opacity-75');
+              }, 1600);
+            });
+          }
+        })();
+    </script>
+  </main>
+</body>
+
+</html>

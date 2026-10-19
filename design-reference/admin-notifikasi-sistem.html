@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_dashboard" name="shell-type" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = {theme: {extend: {colors: {"surface-bright": "#f8f9ff", "tertiary": "#54615b", "surface-container-lowest": "#ffffff", "tertiary-container": "#92a099", "inverse-on-surface": "#eaf1ff", "background": "#f8f9ff", "primary": "#006e22", "on-surface-variant": "#3e4a3c", "primary-container": "#28b446", "tertiary-fixed-dim": "#bccac2", "surface-container": "#e6eeff", "on-secondary": "#ffffff", "primary-fixed-dim": "#5ce06c", "on-tertiary-container": "#2b3732", "outline-variant": "#bdcbb8", "surface-container-high": "#dee9fc", "secondary-container": "#aaf0b0", "inverse-primary": "#5ce06c", "secondary-fixed-dim": "#92d698", "tertiary-fixed": "#d8e6de", "on-error-container": "#93000a", "surface-container-low": "#eff4ff", "on-error": "#ffffff", "surface": "#f8f9ff", "on-primary-fixed-variant": "#005318", "error-container": "#ffdad6", "error": "#ba1a1a", "primary-fixed": "#7afd85", "on-primary-fixed": "#002105", "on-primary": "#ffffff", "surface-container-highest": "#d9e3f6", "on-tertiary": "#ffffff", "surface-dim": "#d0dbed", "on-secondary-fixed-variant": "#0b5223", "secondary": "#2a6b38", "on-tertiary-fixed-variant": "#3d4944", "inverse-surface": "#27313f", "outline": "#6d7b6a", "on-surface": "#121c2a", "surface-tint": "#006e22", "on-primary-container": "#003e0f", "on-secondary-fixed": "#002109", "on-background": "#121c2a", "secondary-fixed": "#adf3b3", "on-tertiary-fixed": "#121e19", "on-secondary-container": "#2e6f3c", "surface-variant": "#d9e3f6"}, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}, spacing: {"space-md": "1rem", "margin-mobile": "1rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-xl": "2rem", "margin": "2rem", "space-xs": "0.25rem", "gutter-mobile": "1rem"}, fontFamily: {"label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "tabular-kpi": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"]}, fontSize: {"label-md": ["0.75rem", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}], "headline-sm": ["1.125rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}], "label-sm": ["0.6875rem", {"lineHeight": "1.15", "letterSpacing": "0.04em", "fontWeight": "700"}], "body-md": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "body-lg": ["1rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "body-sm": ["0.75rem", {"lineHeight": "1.45", "letterSpacing": "0.01em", "fontWeight": "400"}], "tabular-kpi": ["1.75rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}], "headline-lg-mobile": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}], "headline-md": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "600"}], "display": ["3rem", {"lineHeight": "1.15", "letterSpacing": "-0.03em", "fontWeight": "700"}], "headline-lg": ["2rem", {"lineHeight": "1.25", "letterSpacing": "-0.02em", "fontWeight": "700"}], "label-lg": ["0.875rem", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}]}}}}</script>
+</head>
+
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+  <aside
+    class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between select-none">
+    <div class="flex flex-col h-full overflow-y-auto">
+      <div class="h-20 px-space-lg flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-space-sm"><img alt="SixAgo Brand Logo" class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XjSh1Wf-PVvWCsOGVQQrWui36Iwl-huN-FnUa6bj70OV-8HPfOP8LJELIvn_AiEyPAOBt4watHNhaRFkQGwh0WWBq7tU-h0ybJOLb5YNz36bFZWNRTlEBmGtQbtsWGTm81EFpAWeMunGr_O9eQkarCaM5bgpzoiuYyYfVegKGX2LTc88VqHDY13YLfmcqCeNBJ5_gqwwplydVlXgzx-WOGibr7BBCBNfxVCpLum7VYFjWQlv2uqFF87jg" />
+          <div class="flex flex-col"><span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">SixAgo</span><span
+              class="font-label-sm text-label-sm text-tertiary">Travel Governance</span></div>
+        </div><span
+          class="bg-surface-container-low text-secondary font-label-sm text-label-sm px-space-sm py-space-xs rounded-full">Enterprise</span>
+      </div>
+      <div class="px-space-md py-space-sm flex-1">
+        <nav class="space-y-space-md"
+          data-active-classes="bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm">
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Main
+            </div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="dashboard" href="#"><span class="font-label-lg text-label-lg">Dashboard</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="travel-requests" href="#"><span class="font-label-lg text-label-lg">Travel
+                Requests</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="approval-queue" href="#"><span class="font-label-lg text-label-lg">Approval Queue</span><span
+                class="bg-primary-container text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">5</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="travel-advances" href="#"><span class="font-label-lg text-label-lg">Travel
+                Advances</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="reimbursements" href="#"><span class="font-label-lg text-label-lg">Reimbursements</span></a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Management &amp; Policy</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="policies" href="#"><span class="font-label-lg text-label-lg">Policies</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="projects" href="#"><span class="font-label-lg text-label-lg">Projects</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="users-and-roles" href="#"><span class="font-label-lg text-label-lg">Users &amp;
+                Roles</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="approval-hierarchy-and-delegation" href="#"><span class="font-label-lg text-label-lg">Approval
+                Hierarchy &amp; Delegation</span></a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Analytics</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="reports-and-audit" href="#"><span class="font-label-lg text-label-lg">Reports &amp;
+                Audit</span></a><a aria-current="page"
+              class="flex items-center justify-between px-space-md py-space-sm transition-all bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm"
+              data-path="notifications" href="#"><span class="font-label-lg text-label-lg">Notifications</span></a>
+          </div>
+        </nav>
+      </div>
+      <div class="p-space-md m-space-md rounded-xl bg-surface-container-low shrink-0">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">help_center</span></div>
+          <div class="flex flex-col flex-1"><span class="font-label-md text-label-md text-on-surface">Enterprise Help
+              Desk</span><span class="font-body-sm text-body-sm text-tertiary">SLA 15-min Response</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="pl-72">
+    <header
+      class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-xl flex items-center justify-between">
+      <div class="flex items-center w-full max-w-lg">
+        <div class="relative w-full"><span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span><input
+            class="w-full pl-12 pr-space-md py-space-sm rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all"
+            placeholder="Cari perjalanan, tiket, ID request, atau karyawan..." type="text" /></div>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <div
+          class="hidden xl:flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low rounded-full">
+          <span class="material-symbols-outlined text-secondary text-[18px]">domain</span><span
+            class="font-label-md text-label-md text-on-surface">PT Nusantara Dinamika Tbk</span></div><button
+          class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:opacity-95 transition-all"><span
+            class="material-symbols-outlined text-[18px]">add</span><span>Request Baru</span></button><button
+          class="relative w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"><span
+            class="material-symbols-outlined text-[20px]">notifications</span><span
+            class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container"></span></button>
+        <div class="flex items-center gap-space-sm pl-space-sm"><img alt="Ratna Paramita"
+            class="w-8 h-8 rounded-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEMGYKyY9zw7L48nzXQcThDZxOVvDP7G21_emfexfptTZYkJKMI1QEVXzSoj-Myb1BIg0MoA5Y-2JRV_To09JzyJuX8WERVC5XkyGgJow7w5CFvqVE8UHuvpqeoX11aXHH7scn8PK55-K0Zaq0zORJ9QiCc0K63LTumJ1ygHG6Q8sdNEQY9ajN9vRx-APYo7KielcISkFykgN3O8MqfC14mXFWBNeInDxVxHaTh1forLNM1-pEdOvQHQ" />
+          <div class="hidden md:flex flex-col text-left"><span
+              class="font-label-md text-label-md text-on-surface leading-tight">Ratna Paramita</span><span
+              class="font-body-sm text-body-sm text-tertiary leading-tight">HR &amp; Travel Admin</span></div><span
+            class="material-symbols-outlined text-tertiary text-[18px] cursor-pointer">expand_more</span>
+        </div>
+      </div>
+    </header>
+    <main class="w-full pt-20 px-space-xl pb-space-xl bg-background">
+      <div class="flex flex-col w-full space-y-space-xl">
+        <!-- Top Context & Page Breadcrumb Header -->
+        <div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+          <div class="space-y-space-xs max-w-3xl">
+            <nav class="flex items-center gap-space-xs font-label-md text-label-md text-tertiary mb-space-xs">
+              <span class="hover:text-primary transition-colors cursor-pointer">Portal Pengguna</span>
+              <span class="material-symbols-outlined text-[16px] text-tertiary">chevron_right</span>
+              <span class="text-secondary font-semibold">Pusat Pemberitahuan</span>
+            </nav>
+            <div class="flex items-center gap-space-sm flex-wrap">
+              <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Pusat Notifikasi &amp;
+                Riwayat Aktivitas</h1>
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/60 text-secondary font-label-sm text-label-sm">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                Live Sync SLA
+              </span>
+            </div>
+            <p class="font-body-md text-body-md text-tertiary leading-relaxed">
+              Pantau pembaruan status permohonan perjalanan dinas, pencairan kas bon, pengingat SLA approval, dan
+              perubahan kebijakan korporat.
+            </p>
+          </div>
+          <!-- Header Quick Actions -->
+          <div class="flex items-center gap-space-sm flex-wrap shrink-0">
+            <button
+              class="flex items-center gap-space-xs px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-secondary shadow-sm hover:bg-surface-container-low transition-all font-label-lg text-label-lg active:scale-95"
+              id="markAllReadBtn">
+              <span class="material-symbols-outlined text-[18px]">done_all</span>
+              <span>Tandai Semua Sudah Dibaca</span>
+            </button>
+            <button
+              class="flex items-center gap-space-xs px-space-lg py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all font-label-lg text-label-lg active:scale-95">
+              <span class="material-symbols-outlined text-[18px]">tune</span>
+              <span>Pengaturan Preferensi (Email/WA)</span>
+            </button>
+          </div>
+        </div>
+        <!-- Primary Analytics Strip & Notification Health -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+          <div
+            class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary uppercase tracking-wider">Perlu Tindakan
+                Anda</span>
+              <span class="w-8 h-8 rounded-full bg-error-container/60 flex items-center justify-center text-error">
+                <span class="material-symbols-outlined text-[18px]">bolt</span>
+              </span>
+            </div>
+            <div class="mt-4 flex items-baseline justify-between">
+              <span class="font-tabular-kpi text-tabular-kpi text-error">05</span>
+              <span class="font-label-sm text-label-sm text-error bg-error-container/40 px-2 py-0.5 rounded-full">&lt; 4
+                Jam Batas SLA</span>
+            </div>
+            <div class="w-full bg-surface-container-low h-1.5 rounded-full mt-3 overflow-hidden">
+              <div class="bg-error h-full rounded-full w-3/4"></div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary uppercase tracking-wider">Tiket &amp;
+                Persetujuan</span>
+              <span
+                class="w-8 h-8 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[18px]">airplane_ticket</span>
+              </span>
+            </div>
+            <div class="mt-4 flex items-baseline justify-between">
+              <span class="font-tabular-kpi text-tabular-kpi text-on-surface">18</span>
+              <span
+                class="font-label-sm text-label-sm text-secondary bg-secondary-container/40 px-2 py-0.5 rounded-full">100%
+                Terverifikasi</span>
+            </div>
+            <div class="w-full bg-surface-container-low h-1.5 rounded-full mt-3 overflow-hidden">
+              <div class="bg-primary-container h-full rounded-full w-4/5"></div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary uppercase tracking-wider">Dana Cair Pekan
+                Ini</span>
+              <span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+              </span>
+            </div>
+            <div class="mt-4 flex items-baseline justify-between">
+              <span class="font-tabular-kpi text-tabular-kpi text-on-surface">Rp 9,35M</span>
+              <span class="font-label-sm text-label-sm text-tertiary">2 Batch Diproses</span>
+            </div>
+            <div class="w-full bg-surface-container-low h-1.5 rounded-full mt-3 overflow-hidden">
+              <div class="bg-primary h-full rounded-full w-2/3"></div>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-br from-secondary to-primary text-on-secondary p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="flex items-center justify-between">
+              <span
+                class="font-label-md text-label-md text-surface-container-lowest/80 uppercase tracking-wider">Kepatuhan
+                Travel Policy</span>
+              <span class="material-symbols-outlined text-surface-container-lowest text-[20px]">verified_user</span>
+            </div>
+            <div class="mt-4">
+              <div class="font-tabular-kpi text-tabular-kpi text-surface-container-lowest">99.4%</div>
+              <p class="font-body-sm text-body-sm text-surface-container-lowest/80 mt-1">Audit score korporasi Q2-2025
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-2 mt-2 pt-2 border-t border-white/10 text-surface-container-lowest/90 font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[14px]">trending_up</span> +2.1% peningkatan SLA approval
+            </div>
+          </div>
+        </div>
+        <!-- Filter & Tab Navigation Area -->
+        <div class="flex flex-col gap-space-md">
+          <!-- Category Pills Tabs -->
+          <div class="flex items-center gap-space-xs overflow-x-auto pb-1 select-none no-scrollbar">
+            <button
+              class="filter-tab px-space-lg py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2"
+              data-tab="all">
+              <span>Semua Notifikasi</span>
+              <span
+                class="bg-surface-container-lowest/70 text-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full">34</span>
+            </button>
+            <button
+              class="filter-tab px-space-lg py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2"
+              data-tab="urgent">
+              <span>Butuh Tindakan Segera / Urgent</span>
+              <span class="bg-error text-on-error font-label-sm text-label-sm px-2 py-0.5 rounded-full">5</span>
+            </button>
+            <button
+              class="filter-tab px-space-lg py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2"
+              data-tab="approval">
+              <span>Persetujuan &amp; Tiket</span>
+              <span
+                class="bg-surface-container text-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded-full">18</span>
+            </button>
+            <button
+              class="filter-tab px-space-lg py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2"
+              data-tab="finance">
+              <span>Keuangan &amp; Kas Bon</span>
+              <span
+                class="bg-surface-container text-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded-full">8</span>
+            </button>
+            <button
+              class="filter-tab px-space-lg py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2"
+              data-tab="system">
+              <span>Sistem &amp; Kebijakan</span>
+              <span
+                class="bg-surface-container text-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded-full">3</span>
+            </button>
+          </div>
+          <!-- Secondary Filter Bar & Search -->
+          <div
+            class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-md w-full md:w-auto">
+              <!-- Toggle Unread Only -->
+              <label class="inline-flex items-center gap-space-sm cursor-pointer select-none">
+                <input class="sr-only peer" id="toggleUnread" type="checkbox" />
+                <div
+                  class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container relative">
+                </div>
+                <span class="font-label-lg text-label-lg text-on-surface">Belum Dibaca Saja</span>
+              </label>
+              <span class="hidden sm:inline text-outline-variant">|</span>
+              <!-- Timeframe dropdown simulator -->
+              <div
+                class="flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md cursor-pointer hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-[16px] text-tertiary">calendar_today</span>
+                <span>Rentang: <strong>7 Hari Terakhir</strong></span>
+                <span class="material-symbols-outlined text-[16px] text-tertiary">arrow_drop_down</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-space-sm w-full md:w-80">
+              <div class="relative w-full">
+                <span
+                  class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-tertiary text-[18px]">search</span>
+                <input
+                  class="w-full pl-10 pr-space-md py-2 rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container transition-all"
+                  id="searchNotification" placeholder="Cari riwayat notifikasi..." type="text" />
+              </div>
+              <button
+                class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors shrink-0"
+                title="Urutkan Waktu">
+                <span class="material-symbols-outlined text-[18px]">filter_list</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Main Feed & Fast Setting Split Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+          <!-- Notifications Feed Column (8 cols) -->
+          <div class="lg:col-span-8 space-y-space-md" id="notificationFeed">
+            <!-- ITEM 1: URGENT / ACTION REQUIRED -->
+            <article
+              class="notification-card unread group relative bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+              data-category="urgent">
+              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-error"></div>
+              <div class="flex items-start gap-space-md">
+                <!-- Icon Node -->
+                <div
+                  class="w-11 h-11 rounded-full bg-error-container flex items-center justify-center text-error shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[24px]">electric_bolt</span>
+                </div>
+                <!-- Content Body -->
+                <div class="flex-1 min-w-0 space-y-space-xs">
+                  <div class="flex items-center justify-between gap-space-sm flex-wrap">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="px-2.5 py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-bold uppercase tracking-wider">Otorisasi
+                        Segera</span>
+                      <span class="w-2 h-2 rounded-full bg-primary-container unread-dot" title="Belum Dibaca"></span>
+                      <span class="font-body-sm text-body-sm text-tertiary">#TR-2025-104</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+                      <span class="material-symbols-outlined text-[15px]">schedule</span>
+                      <span>12 menit yang lalu</span>
+                    </div>
+                  </div>
+                  <h3
+                    class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight group-hover:text-primary transition-colors">
+                    Permohonan #TR-2025-104 Membutuhkan Otorisasi Level 2
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    <strong>Budi Santoso</strong> mengajukan perjalanan dinas mendadak ke <strong>Surabaya (IDC
+                      Rungkut)</strong> keberangkatan 18 Mei 2025. Sisa SLA persetujuan Anda adalah <span
+                      class="text-error font-semibold">4 jam</span> sebelum sistem auto-escalate ke General Manager.
+                  </p>
+                  <!-- Metadata Pills & Visual Footprint -->
+                  <div
+                    class="p-space-sm bg-surface-container-low rounded-lg flex items-center gap-space-md flex-wrap text-tertiary font-body-sm text-body-sm">
+                    <span class="flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-[16px] text-secondary">flight_takeoff</span>
+                      Garuda Indonesia (GA-318)
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-[16px] text-secondary">hotel</span>
+                      JW Marriott Surabaya (1 Malam)
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+                      Est: Rp 4.820.000
+                    </span>
+                  </div>
+                  <!-- Direct Action Buttons -->
+                  <div class="pt-space-xs flex items-center gap-space-sm flex-wrap">
+                    <button
+                      class="flex items-center gap-1.5 px-space-lg py-2 rounded-full bg-primary-container text-on-primary hover:bg-primary font-label-lg text-label-lg shadow-sm transition-all active:scale-95">
+                      <span class="material-symbols-outlined text-[18px]">verified</span>
+                      <span>Tinjau di Antrian Approval</span>
+                    </button>
+                    <button
+                      class="flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-all">
+                      <span class="material-symbols-outlined text-[18px]">description</span>
+                      <span>Lihat Dokumen</span>
+                    </button>
+                    <button
+                      class="mark-single-read ml-auto w-8 h-8 rounded-full hover:bg-surface-container-low flex items-center justify-center text-tertiary"
+                      title="Tandai telah dibaca">
+                      <span class="material-symbols-outlined text-[18px]">check</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- ITEM 2: FINANCE DISBURSED -->
+            <article
+              class="notification-card unread group relative bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+              data-category="finance">
+              <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+              <div class="flex items-start gap-space-md">
+                <!-- Icon Node -->
+                <div
+                  class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center text-secondary shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+                </div>
+                <!-- Content Body -->
+                <div class="flex-1 min-w-0 space-y-space-xs">
+                  <div class="flex items-center justify-between gap-space-sm flex-wrap">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Kas
+                        Bon Terbayar</span>
+                      <span class="w-2 h-2 rounded-full bg-primary-container unread-dot"></span>
+                      <span class="font-body-sm text-body-sm text-tertiary">#ADV-2025-042</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+                      <span class="material-symbols-outlined text-[15px]">schedule</span>
+                      <span>1 jam yang lalu</span>
+                    </div>
+                  </div>
+                  <h3
+                    class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight group-hover:text-primary transition-colors">
+                    Uang Muka (Kas Bon) #ADV-2025-042 Berhasil Ditransfer
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Pencairan dana <strong class="text-secondary">Rp 5.000.000</strong> ke rekening <strong>Bank Central
+                      Asia a.n. Bambang Wicaksono</strong> telah diproses oleh Finance &amp; Treasury. Nomor referensi
+                    bank: <code
+                      class="font-label-sm text-label-sm bg-surface-container-low px-1.5 py-0.5 rounded text-on-surface">TRX-BCA-98210492</code>.
+                  </p>
+                  <div class="pt-space-xs flex items-center gap-space-sm flex-wrap">
+                    <button
+                      class="flex items-center gap-1.5 px-space-lg py-2 rounded-full bg-surface-container-low text-secondary hover:bg-secondary-container font-label-lg text-label-lg transition-all active:scale-95">
+                      <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+                      <span>Unduh Bukti Transfer (PDF)</span>
+                    </button>
+                    <button
+                      class="flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-all">
+                      <span>Rincian Alokasi Kas</span>
+                    </button>
+                    <button
+                      class="mark-single-read ml-auto w-8 h-8 rounded-full hover:bg-surface-container-low flex items-center justify-center text-tertiary"
+                      title="Tandai telah dibaca">
+                      <span class="material-symbols-outlined text-[18px]">check</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- ITEM 3: REIMBURSEMENT VERIFIED -->
+            <article
+              class="notification-card group relative bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+              data-category="finance">
+              <div class="flex items-start gap-space-md">
+                <!-- Icon Node -->
+                <div
+                  class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[24px]">task_alt</span>
+                </div>
+                <!-- Content Body -->
+                <div class="flex-1 min-w-0 space-y-space-xs">
+                  <div class="flex items-center justify-between gap-space-sm flex-wrap">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Audit
+                        Selesai</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">#REIM-2025-081</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+                      <span class="material-symbols-outlined text-[15px]">schedule</span>
+                      <span>3 jam yang lalu</span>
+                    </div>
+                  </div>
+                  <h3
+                    class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight group-hover:text-primary transition-colors">
+                    Verifikasi Settlement Reimbursement #REIM-2025-081 Selesai
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Audit bukti pengeluaran riil selesai disetujui. Sisa reimbursable <strong class="text-on-surface">Rp
+                      4.350.000</strong> dijadwalkan cair pada siklus payroll reguler batch <strong>25 Mei
+                      2025</strong>. 12 lampiran kuitansi OCR valid.
+                  </p>
+                  <div class="pt-space-xs flex items-center gap-space-sm flex-wrap">
+                    <button
+                      class="flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-all">
+                      <span class="material-symbols-outlined text-[18px]">table_chart</span>
+                      <span>Lihat Ringkasan Settlement</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- ITEM 4: POLICY UPDATE -->
+            <article
+              class="notification-card group relative bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+              data-category="system">
+              <div class="flex items-start gap-space-md">
+                <!-- Icon Node -->
+                <div
+                  class="w-11 h-11 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[24px]">shield</span>
+                </div>
+                <!-- Content Body -->
+                <div class="flex-1 min-w-0 space-y-space-xs">
+                  <div class="flex items-center justify-between gap-space-sm flex-wrap">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="px-2.5 py-0.5 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm font-semibold">Kebijakan
+                        Perusahaan</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">POL-2025-IKN-02</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+                      <span class="material-symbols-outlined text-[15px]">schedule</span>
+                      <span>Kemarin, 14:20 WIB</span>
+                    </div>
+                  </div>
+                  <h3
+                    class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight group-hover:text-primary transition-colors">
+                    Pembaruan Kebijakan Plafon Hotel Bintang 4 Wilayah Balikpapan
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Manajemen menetapkan penyesuaian plafon akomodasi untuk zona Ibu Kota Nusantara (IKN) &amp;
+                    Balikpapan efektif per <strong>1 Juni 2025</strong> menjadi <strong>Rp 1.800.000/malam</strong>
+                    (sebelumnya Rp 1.250.000) menyesuaikan kenaikan indeks pasar.
+                  </p>
+                  <div class="pt-space-xs flex items-center gap-space-sm flex-wrap">
+                    <button
+                      class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container-low text-secondary hover:bg-secondary-container font-label-md text-label-md transition-all">
+                      <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                      <span>Baca Matriks Kebijakan Terbaru</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- ITEM 5: DELEGATION ALERT -->
+            <article
+              class="notification-card group relative bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+              data-category="approval">
+              <div class="flex items-start gap-space-md">
+                <!-- Icon Node -->
+                <div
+                  class="w-11 h-11 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface shrink-0 mt-0.5">
+                  <span class="material-symbols-outlined text-[24px]">assignment_ind</span>
+                </div>
+                <!-- Content Body -->
+                <div class="flex-1 min-w-0 space-y-space-xs">
+                  <div class="flex items-center justify-between gap-space-sm flex-wrap">
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="px-2.5 py-0.5 rounded-full bg-secondary-container/70 text-secondary font-label-sm text-label-sm font-semibold">Delegasi
+                        Aktif</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Otoritas Bertindak</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-tertiary">
+                      <span class="material-symbols-outlined text-[15px]">schedule</span>
+                      <span>Kemarin, 09:15 WIB</span>
+                    </div>
+                  </div>
+                  <h3
+                    class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight group-hover:text-primary transition-colors">
+                    Delegasi Approval dari Ir. Michael Wijaya Aktif
+                  </h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Wewenang otorisasi perjalanan dinas Divisi Engineering dialihkan sementara kepada Anda selama
+                    periode cuti kerja <strong>16 - 22 Mei 2025</strong>. Segala approval atas nama delegator terekam
+                    otomatis pada audit log.
+                  </p>
+                  <div class="pt-space-xs flex items-center gap-space-sm flex-wrap">
+                    <button
+                      class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-all">
+                      <span class="material-symbols-outlined text-[16px]">how_to_reg</span>
+                      <span>Lihat Antrean Delegasi (3 Permohonan)</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- Pagination / History Load -->
+            <div class="flex items-center justify-between pt-space-md">
+              <span class="font-body-sm text-body-sm text-tertiary">Menampilkan 5 dari 34 riwayat notifikasi
+                terbaru</span>
+              <button
+                class="flex items-center gap-space-xs px-space-lg py-2 rounded-full bg-surface-container-lowest text-on-surface hover:bg-surface-container-low font-label-md text-label-md shadow-sm transition-all">
+                <span>Muat Riwayat Lebih Lama</span>
+                <span class="material-symbols-outlined text-[16px]">expand_more</span>
+              </button>
+            </div>
+          </div>
+          <!-- Side Control Widget Column (4 cols) -->
+          <div class="lg:col-span-4 space-y-space-lg">
+            <!-- Side Widget: Pengaturan Notifikasi Cepat -->
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-lg">
+              <div class="flex items-center justify-between pb-space-xs">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Pengaturan Notifikasi
+                    Cepat</h2>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+              </div>
+              <p class="font-body-sm text-body-sm text-tertiary">
+                Sesuaikan saluran penerimaan notifikasi real-time agar Anda tidak tertinggal batas waktu otorisasi
+                operasional.
+              </p>
+              <!-- Setting Items List -->
+              <div class="space-y-space-md">
+                <!-- WhatsApp Channel -->
+                <div class="p-space-md bg-surface-container-low rounded-xl space-y-space-xs">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-space-sm">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-[18px]">chat</span>
+                      </div>
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">WhatsApp Notification Alert</p>
+                        <p class="font-body-sm text-body-sm text-secondary font-medium">Aktif</p>
+                      </div>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pl-10 text-tertiary font-body-sm text-body-sm truncate">
+                    +62 812-xxxx-8890 (Enterprise OTP Valid)
+                  </div>
+                </div>
+                <!-- Email Digest Harian -->
+                <div class="p-space-md bg-surface-container-low rounded-xl space-y-space-xs">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-space-sm">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined text-[18px]">mail</span>
+                      </div>
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">Email Digest Harian</p>
+                        <p class="font-body-sm text-body-sm text-secondary font-medium">Aktif Pukul 07:30 WIB</p>
+                      </div>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pl-10 text-tertiary font-body-sm text-body-sm truncate"
+                    title="ratna.paramita@nusantaradinamika.co.id">
+                    ratna.paramita@nusantaradinamika.co.id
+                  </div>
+                </div>
+                <!-- Push SLA Warning -->
+                <div class="p-space-md bg-surface-container-low rounded-xl space-y-space-xs">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-space-sm">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-error">
+                        <span class="material-symbols-outlined text-[18px]">alarm</span>
+                      </div>
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">SLA Warning Alert Push</p>
+                        <p class="font-body-sm text-body-sm text-error font-medium">Aktif (Tenggat &lt; 6 Jam)</p>
+                      </div>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </div>
+                  <div class="pl-10 text-tertiary font-body-sm text-body-sm">
+                    Push notification browser desktop &amp; mobile app
+                  </div>
+                </div>
+              </div>
+              <button
+                class="w-full py-2.5 rounded-full bg-secondary text-on-secondary hover:bg-primary transition-all font-label-lg text-label-lg shadow-sm active:scale-98 flex items-center justify-center gap-2">
+                <span>Kelola Pengaturan Lengkap</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+            <!-- SLA Compliance Mini Info Card -->
+            <div class="bg-surface-container-low p-space-lg rounded-xl space-y-space-sm">
+              <div class="flex items-center gap-space-sm">
+                <div
+                  class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined text-[16px]">info</span>
+                </div>
+                <span class="font-label-md text-label-md text-on-surface">Aturan Eskalasi Otomatis</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
+                Permohonan tiket dengan status mendesak (&lt; 24 jam keberangkatan) akan dialihkan ke Divisi Head jika
+                approver utama tidak merespons dalam waktu <strong>4 jam kerja</strong>.
+              </p>
+            </div>
+            <!-- Quick Document Audit Reference -->
+            <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+              <div class="flex items-center justify-between">
+                <span class="font-label-md text-label-md text-tertiary uppercase tracking-wider">Pusat Unduhan
+                  Notifikasi</span>
+                <span class="material-symbols-outlined text-tertiary text-[18px]">download_for_offline</span>
+              </div>
+              <div class="space-y-space-xs">
+                <a class="flex items-center justify-between p-space-sm rounded-lg hover:bg-surface-container-low transition-colors group"
+                  href="#">
+                  <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary">Log Audit Aktivitas
+                    Mei 2025.csv</span>
+                  <span class="material-symbols-outlined text-[16px] text-tertiary">file_download</span>
+                </a>
+                <a class="flex items-center justify-between p-space-sm rounded-lg hover:bg-surface-container-low transition-colors group"
+                  href="#">
+                  <span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary">Rekap Transfer Kas
+                    Bon Batch 2.pdf</span>
+                  <span class="material-symbols-outlined text-[16px] text-tertiary">file_download</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        // Filter Tabs Micro-interaction
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const cards = document.querySelectorAll('.notification-card');
+        const toggleUnread = document.getElementById('toggleUnread');
+        const searchInput = document.getElementById('searchNotification');
+        const markAllReadBtn = document.getElementById('markAllReadBtn');
+
+        function applyFilters() {
+          const activeTab = document.querySelector('.filter-tab.bg-secondary-container')?.getAttribute('data-tab') || 'all';
+          const unreadOnly = toggleUnread ? toggleUnread.checked : false;
+          const query = (searchInput?.value || '').toLowerCase().trim();
+
+          cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            const isUnread = card.classList.contains('unread');
+            const text = card.textContent.toLowerCase();
+
+            let matchTab = (activeTab === 'all') || (category === activeTab);
+            let matchUnread = !unreadOnly || isUnread;
+            let matchSearch = !query || text.includes(query);
+
+            if (matchTab && matchUnread && matchSearch) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+
+        filterTabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            filterTabs.forEach(t => {
+              t.className = 'filter-tab px-space-lg py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2';
+            });
+            tab.className = 'filter-tab px-space-lg py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-lg text-label-lg shadow-sm whitespace-nowrap transition-all flex items-center gap-2';
+            applyFilters();
+          });
+        });
+
+        if (toggleUnread) {
+          toggleUnread.addEventListener('change', applyFilters);
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener('input', applyFilters);
+        }
+
+        // Mark all as read micro-interaction
+        if (markAllReadBtn) {
+          markAllReadBtn.addEventListener('click', () => {
+            document.querySelectorAll('.notification-card.unread').forEach(card => {
+              card.classList.remove('unread');
+              const dot = card.querySelector('.unread-dot');
+              if (dot) dot.remove();
+              const borderIndicator = card.querySelector('.w-1\\.5');
+              if (borderIndicator) borderIndicator.remove();
+            });
+            applyFilters();
+          });
+        }
+
+        // Single card mark as read
+        document.querySelectorAll('.mark-single-read').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const card = btn.closest('.notification-card');
+            if (card) {
+              card.classList.remove('unread');
+              const dot = card.querySelector('.unread-dot');
+              if (dot) dot.remove();
+              const borderIndicator = card.querySelector('.w-1\\.5');
+              if (borderIndicator) borderIndicator.remove();
+              applyFilters();
+            }
+          });
+        });
+      </script>
+    </main>
+  </div>
+</body>
+
+</html>

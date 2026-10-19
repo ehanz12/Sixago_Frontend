@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_dashboard" name="shell-type" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = {theme: {extend: {colors: {"background": "#f8f9ff", "on-error-container": "#93000a", "surface-tint": "#006e22", "primary-fixed-dim": "#5ce06c", "surface-container-high": "#dee9fc", "primary": "#006e22", "tertiary-fixed-dim": "#bccac2", "tertiary-fixed": "#d8e6de", "on-primary": "#ffffff", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#0b5223", "on-surface": "#121c2a", "surface-container-lowest": "#ffffff", "on-background": "#121c2a", "inverse-surface": "#27313f", "surface-container-low": "#eff4ff", "tertiary": "#54615b", "secondary-fixed-dim": "#92d698", "inverse-primary": "#5ce06c", "surface-bright": "#f8f9ff", "outline": "#6d7b6a", "on-primary-fixed-variant": "#005318", "surface-container": "#e6eeff", "primary-container": "#28b446", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#3d4944", "tertiary-container": "#92a099", "on-error": "#ffffff", "on-secondary-container": "#2e6f3c", "on-primary-container": "#003e0f", "primary-fixed": "#7afd85", "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "surface-variant": "#d9e3f6", "outline-variant": "#bdcbb8", "surface-dim": "#d0dbed", "on-primary-fixed": "#002105", "surface-container-highest": "#d9e3f6", "secondary-fixed": "#adf3b3", "secondary-container": "#aaf0b0", "surface": "#f8f9ff", "on-surface-variant": "#3e4a3c", "secondary": "#2a6b38", "on-tertiary-container": "#2b3732", "error": "#ba1a1a", "on-secondary-fixed": "#002109", "on-tertiary-fixed": "#121e19"}, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}, spacing: {"gutter": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin": "2rem", "space-xl": "2rem", "margin-mobile": "1rem"}, fontFamily: {"display": ["Plus Jakarta Sans"], "tabular-kpi": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"]}, fontSize: {"display": ["3rem", {"lineHeight": "1.15", "letterSpacing": "-0.03em", "fontWeight": "700"}], "tabular-kpi": ["1.75rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-sm": ["0.75rem", {"lineHeight": "1.45", "letterSpacing": "0.01em", "fontWeight": "400"}], "body-md": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "headline-lg-mobile": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}], "headline-md": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "600"}], "headline-sm": ["1.125rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}], "label-lg": ["0.875rem", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}], "label-md": ["0.75rem", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}], "body-lg": ["1rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "label-sm": ["0.6875rem", {"lineHeight": "1.15", "letterSpacing": "0.04em", "fontWeight": "700"}], "headline-lg": ["2rem", {"lineHeight": "1.25", "letterSpacing": "-0.02em", "fontWeight": "700"}]}}}}</script>
+</head>
+
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+  <aside
+    class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between select-none">
+    <div class="flex flex-col h-full overflow-y-auto">
+      <div class="h-20 px-space-lg flex items-center justify-between">
+        <div class="flex items-center gap-space-sm"><img alt="SixAgo Brand Logo" class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XjSh1Wf-PVvWCsOGVQQrWui36Iwl-huN-FnUa6bj70OV-8HPfOP8LJELIvn_AiEyPAOBt4watHNhaRFkQGwh0WWBq7tU-h0ybJOLb5YNz36bFZWNRTlEBmGtQbtsWGTm81EFpAWeMunGr_O9eQkarCaM5bgpzoiuYyYfVegKGX2LTc88VqHDY13YLfmcqCeNBJ5_gqwwplydVlXgzx-WOGibr7BBCBNfxVCpLum7VYFjWQlv2uqFF87jg" />
+          <div class="flex flex-col"><span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">SixAgo</span><span
+              class="font-label-sm text-label-sm text-tertiary">Travel Governance</span></div>
+        </div><span
+          class="bg-surface-container-low text-secondary font-label-sm text-label-sm px-space-sm py-space-xs rounded-full">Enterprise</span>
+      </div>
+      <div class="px-space-md py-space-sm flex-1">
+        <nav class="space-y-space-md"
+          data-active-classes="bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm">
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Main
+            </div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="dashboard" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">dashboard</span><span
+                  class="font-label-lg text-label-lg">Dashboard</span></div>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="travel-requests" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">flight_takeoff</span><span
+                  class="font-label-lg text-label-lg">Travel Requests</span></div>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="approval-queue" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">verified</span><span
+                  class="font-label-lg text-label-lg">Approval Queue</span></div><span
+                class="bg-primary-container text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">5</span>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="travel-advances" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">payments</span><span
+                  class="font-label-lg text-label-lg">Travel Advances</span></div>
+            </a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Management &amp; Policy</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="policies" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">policy</span><span
+                  class="font-label-lg text-label-lg">Policies</span></div>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="projects" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">folder_shared</span><span
+                  class="font-label-lg text-label-lg">Projects</span></div>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="reimbursements" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">receipt_long</span><span
+                  class="font-label-lg text-label-lg">Reimbursements</span></div>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="users-and-roles" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">manage_accounts</span><span
+                  class="font-label-lg text-label-lg">Users &amp; Roles</span></div>
+            </a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Analytics</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="reports-and-audit" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">analytics</span><span
+                  class="font-label-lg text-label-lg">Reports &amp; Audit</span></div>
+            </a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all group"
+              data-path="notifications" href="#">
+              <div class="flex items-center gap-space-sm"><span
+                  class="material-symbols-outlined text-[20px]">notifications</span><span
+                  class="font-label-lg text-label-lg">Notifications</span></div>
+            </a>
+          </div>
+        </nav>
+      </div>
+      <div class="p-space-md m-space-md rounded-xl bg-surface-container-low">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">help_center</span></div>
+          <div class="flex flex-col flex-1"><span class="font-label-md text-label-md text-on-surface">Enterprise Help
+              Desk</span><span class="font-body-sm text-body-sm text-tertiary">SLA 15-min Response</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="pl-72">
+    <header
+      class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-xl flex items-center justify-between">
+      <div class="flex items-center w-full max-w-lg">
+        <div class="relative w-full"><span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span><input
+            class="w-full pl-12 pr-space-md py-space-sm rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all"
+            placeholder="Cari perjalanan, tiket, ID request, atau karyawan..." type="text" /></div>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <div
+          class="hidden xl:flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low rounded-full">
+          <span class="material-symbols-outlined text-secondary text-[18px]">domain</span><span
+            class="font-label-md text-label-md text-on-surface">PT Nusantara Dinamika Tbk</span></div><button
+          class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:opacity-95 transition-all"><span
+            class="material-symbols-outlined text-[18px]">add</span><span>Request Baru</span></button><button
+          class="relative w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"><span
+            class="material-symbols-outlined text-[20px]">notifications</span><span
+            class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container"></span></button>
+        <div class="flex items-center gap-space-sm pl-space-sm"><img alt="Profile"
+            class="w-8 h-8 rounded-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEMGYKyY9zw7L48nzXQcThDZxOVvDP7G21_emfexfptTZYkJKMI1QEVXzSoj-Myb1BIg0MoA5Y-2JRV_To09JzyJuX8WERVC5XkyGgJow7w5CFvqVE8UHuvpqeoX11aXHH7scn8PK55-K0Zaq0zORJ9QiCc0K63LTumJ1ygHG6Q8sdNEQY9ajN9vRx-APYo7KielcISkFykgN3O8MqfC14mXFWBNeInDxVxHaTh1forLNM1-pEdOvQHQ" />
+          <div class="hidden md:flex flex-col text-left"><span
+              class="font-label-md text-label-md text-on-surface leading-tight">Ratna Paramita</span><span
+              class="font-body-sm text-body-sm text-tertiary leading-tight">HR &amp; Travel Admin</span></div><span
+            class="material-symbols-outlined text-tertiary text-[18px] cursor-pointer">expand_more</span>
+        </div>
+      </div>
+    </header>
+    <main class="w-full pt-20 px-space-xl pb-space-xl bg-background">
+      <div class="flex flex-col w-full">
+        <!-- Breadcrumbs & Header Section -->
+        <div class="flex flex-col gap-space-sm mb-space-xl">
+          <div class="flex items-center gap-space-xs text-tertiary font-label-md text-label-md">
+            <span>Master Data &amp; Kebijakan</span>
+            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+            <span class="text-primary font-label-lg text-label-lg">Travel Policy</span>
+          </div>
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+            <div class="flex flex-col">
+              <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Manajemen Kebijakan
+                Perjalanan Dinas (Travel Policy)</h1>
+              <p class="font-body-md text-body-md text-tertiary mt-space-xs max-w-3xl">
+                Atur plafon biaya transportasi, klasifikasi hotel, tunjangan harian (per diem), dan parameter dispensasi
+                deviasi kepatuhan otomatis per level jabatan korporat PT Nusantara Dinamika Tbk.
+              </p>
+            </div>
+            <div class="flex items-center gap-space-sm shrink-0">
+              <button
+                class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-surface-container text-secondary hover:bg-surface-container-high transition-all font-label-lg text-label-lg shadow-sm"
+                id="btn-audit-log">
+                <span class="material-symbols-outlined text-[18px]">history</span>
+                <span>Riwayat Perubahan Aturan</span>
+              </button>
+              <button
+                class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary hover:opacity-95 transition-all font-label-lg text-label-lg shadow-[0_4px_14px_rgba(40,180,70,0.3)]"
+                id="btn-open-modal">
+                <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                <span>+ Buat Kebijakan Baru</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Metric / Overview Highlights -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg mb-space-xl">
+          <!-- Card 1: Eksekutif & Direksi -->
+          <div
+            class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-start justify-between mb-space-md">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">corporate_fare</span>
+              </div>
+              <span
+                class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                <span class="w-2 h-2 rounded-full bg-primary"></span> Aktif
+              </span>
+            </div>
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Level M1 - C-Suite</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Eksekutif &amp; Direksi</h3>
+              <p class="font-body-sm text-body-sm text-tertiary mb-space-md">BOD, Komisaris &amp; Senior Advisor</p>
+              <div class="space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">flight</span>Tiket:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Business Class</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">hotel</span>Hotel:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Bintang 5 (As-Incurred)</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">payments</span>Per Diem:</span>
+                  <span class="font-tabular-kpi text-label-md text-primary font-bold">Rp 1.500.000<span
+                      class="font-normal text-tertiary">/hari</span></span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-space-md pt-space-xs flex items-center justify-between text-tertiary font-label-sm text-label-sm">
+              <span>SLA Approval: Instant (Auto)</span>
+              <span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+            </div>
+          </div>
+          <!-- Card 2: Senior Management -->
+          <div
+            class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-start justify-between mb-space-md">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">badge</span>
+              </div>
+              <span
+                class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                <span class="w-2 h-2 rounded-full bg-primary"></span> Aktif
+              </span>
+            </div>
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Level M2 - M3</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Senior Management</h3>
+              <p class="font-body-sm text-body-sm text-tertiary mb-space-md">VP, AVP, General Manager</p>
+              <div class="space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">flight</span>Tiket:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Ekonomi Fleksibel</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">hotel</span>Hotel:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Bintang 4/5 (Maks 1,8 Jt)</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">payments</span>Per Diem:</span>
+                  <span class="font-tabular-kpi text-label-md text-primary font-bold">Rp 750.000<span
+                      class="font-normal text-tertiary">/hari</span></span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-space-md pt-space-xs flex items-center justify-between text-tertiary font-label-sm text-label-sm">
+              <span>SLA Approval: 2 Hari Kerja</span>
+              <span class="material-symbols-outlined text-[16px] text-secondary">approval</span>
+            </div>
+          </div>
+          <!-- Card 3: Manajerial & Lead -->
+          <div
+            class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-start justify-between mb-space-md">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">supervisor_account</span>
+              </div>
+              <span
+                class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                <span class="w-2 h-2 rounded-full bg-primary"></span> Aktif
+              </span>
+            </div>
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Level P3 - P5</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Manajerial &amp; Lead</h3>
+              <p class="font-body-sm text-body-sm text-tertiary mb-space-md">Manager, Principal &amp; Team Lead</p>
+              <div class="space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">flight</span>Tiket:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Ekonomi Standar</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">hotel</span>Hotel:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Bintang 4 (Maks 1,1 Jt)</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">payments</span>Per Diem:</span>
+                  <span class="font-tabular-kpi text-label-md text-primary font-bold">Rp 450.000<span
+                      class="font-normal text-tertiary">/hari</span></span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-space-md pt-space-xs flex items-center justify-between text-tertiary font-label-sm text-label-sm">
+              <span>SLA Approval: 3 Hari Kerja</span>
+              <span class="material-symbols-outlined text-[16px] text-secondary">timelapse</span>
+            </div>
+          </div>
+          <!-- Card 4: Operasional & Staff -->
+          <div
+            class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex items-start justify-between mb-space-md">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">engineering</span>
+              </div>
+              <span
+                class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                <span class="w-2 h-2 rounded-full bg-primary"></span> Aktif
+              </span>
+            </div>
+            <div>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Level P1 - P2</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Operasional &amp; Staff</h3>
+              <p class="font-body-sm text-body-sm text-tertiary mb-space-md">Officer, Analyst &amp; Site Engineer</p>
+              <div class="space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">flight</span>Tiket:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Promo / KA Eksekutif</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">hotel</span>Hotel:</span>
+                  <span class="font-label-md text-label-md text-on-surface">Bintang 3 (Maks 650 Rb)</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                  <span class="text-tertiary flex items-center gap-1"><span
+                      class="material-symbols-outlined text-[15px]">payments</span>Per Diem:</span>
+                  <span class="font-tabular-kpi text-label-md text-primary font-bold">Rp 250.000<span
+                      class="font-normal text-tertiary">/hari</span></span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-space-md pt-space-xs flex items-center justify-between text-tertiary font-label-sm text-label-sm">
+              <span>SLA Approval: 5 Hari Kerja</span>
+              <span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+            </div>
+          </div>
+        </div>
+        <!-- Travel Policy Management Main Table Container -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col mb-space-xl">
+          <!-- Filter, Search & Table Operations Bar -->
+          <div
+            class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-low/40">
+            <div class="flex items-center gap-space-sm flex-wrap">
+              <div class="relative min-w-[280px]">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-tertiary text-[18px]">search</span>
+                <input
+                  class="w-full pl-9 pr-space-md py-1.5 rounded-full bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder-tertiary shadow-sm focus:outline-none focus:bg-surface-container-lowest"
+                  placeholder="Cari kode atau nama policy..." type="text" />
+              </div>
+              <div
+                class="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-1.5 rounded-full shadow-sm">
+                <span class="text-tertiary font-label-md text-label-md">Wilayah:</span>
+                <select
+                  class="bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer">
+                  <option>Semua (Domestik &amp; Global)</option>
+                  <option>Domestik Indonesia</option>
+                  <option>Asia Pasifik (APAC)</option>
+                  <option>Internasional / Jarak Jauh</option>
+                </select>
+              </div>
+              <div
+                class="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-1.5 rounded-full shadow-sm">
+                <span class="text-tertiary font-label-md text-label-md">Status:</span>
+                <select
+                  class="bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer">
+                  <option>Semua Status</option>
+                  <option>Aktif Berjalan</option>
+                  <option>Draf Revisi</option>
+                  <option>Non-aktif</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-center gap-space-xs">
+              <button
+                class="flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container-low text-on-surface transition-colors font-label-md text-label-md shadow-sm">
+                <span class="material-symbols-outlined text-[16px]">file_download</span>
+                <span>Unduh Matriks (XLS)</span>
+              </button>
+            </div>
+          </div>
+          <!-- Table Component -->
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low text-tertiary font-label-sm text-label-sm uppercase tracking-wider">
+                  <th class="py-space-md px-space-lg font-semibold">Kode &amp; Kebijakan</th>
+                  <th class="py-space-md px-space-md font-semibold">Cakupan Grade</th>
+                  <th class="py-space-md px-space-md font-semibold">Plafon Transport (Leg)</th>
+                  <th class="py-space-md px-space-md font-semibold">Plafon Hotel (Malam)</th>
+                  <th class="py-space-md px-space-md font-semibold">Per Diem (Harian)</th>
+                  <th class="py-space-md px-space-md font-semibold">Transport Lokal</th>
+                  <th class="py-space-md px-space-md font-semibold">SLA Approval</th>
+                  <th class="py-space-md px-space-md font-semibold text-center">Status</th>
+                  <th class="py-space-md px-space-lg font-semibold text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-surface-container-low font-body-md text-body-md">
+                <!-- Row 1: Executive Domestic -->
+                <tr class="hover:bg-surface-container-low/30 transition-colors">
+                  <td class="py-space-md px-space-lg">
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-label-sm text-primary font-bold">POL-IDN-DIR-01</span>
+                      <span class="font-label-lg text-label-lg text-on-surface">Direksi &amp; Eksekutif Domestik</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Tiket Flexi/Business, VIP Lounge &amp;
+                        Concierge</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Grade
+                      C-Level / BOD</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Business Class</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Garuda / Batik (Full Fare)</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Bintang 5 Suite</span>
+                      <span class="font-body-sm text-body-sm text-primary font-medium">As Incurred (Unlimited)</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-tabular-kpi text-label-lg text-on-surface font-semibold">Rp 1.500.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Full Board Allowance</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span class="font-label-md text-label-md text-on-surface">Dedicated Rental / Alphard</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-surface-container-low px-2 py-0.5 rounded-full">
+                      <span class="material-symbols-outlined text-[14px]">bolt</span> Auto / 0 Hari
+                    </span>
+                  </td>
+                  <td class="py-space-md px-space-md text-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-space-md px-space-lg text-right">
+                    <div class="flex items-center justify-end gap-space-xs">
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors"
+                        title="Edit Kebijakan">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                        title="Duplikasi Aturan">
+                        <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-error flex items-center justify-center hover:bg-error hover:text-on-error transition-colors"
+                        title="Hapus">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 2: Senior Management APAC/Domestik -->
+                <tr class="hover:bg-surface-container-low/30 transition-colors">
+                  <td class="py-space-md px-space-lg">
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-label-sm text-primary font-bold">POL-IDN-MGR-02</span>
+                      <span class="font-label-lg text-label-lg text-on-surface">Senior Management (VP &amp; GM)</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Ekonomi Fleksibel, Prioritas Bagasi</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Grade
+                      M2 - M3</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Maks Rp 6.000.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Garuda / Batik Flexi</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Bintang 4 / Bintang 5</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Maks Rp 1.800.000 / malam</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-tabular-kpi text-label-lg text-on-surface font-semibold">Rp 750.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Termasuk transport makan</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span class="font-label-md text-label-md text-on-surface">Maks Rp 350.000 / hari</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-surface-container-low px-2 py-0.5 rounded-full">
+                      2 Hari Kerja
+                    </span>
+                  </td>
+                  <td class="py-space-md px-space-md text-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-space-md px-space-lg text-right">
+                    <div class="flex items-center justify-end gap-space-xs">
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors"
+                        title="Edit Kebijakan">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                        title="Duplikasi Aturan">
+                        <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-error flex items-center justify-center hover:bg-error hover:text-on-error transition-colors"
+                        title="Hapus">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 3: Standard Managerial (As mentioned in prompt) -->
+                <tr class="bg-surface-container-low/20 hover:bg-surface-container-low/40 transition-colors">
+                  <td class="py-space-md px-space-lg">
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-label-sm text-primary font-bold">POL-IDN-MGR-03</span>
+                      <span class="font-label-lg text-label-lg text-on-surface">Standar Perjalanan Domestik Level
+                        Manajer</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Ekonomi Reguler, Tiket Standar
+                        Penerbangan</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Grade
+                      P3 - P5</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Maks Rp 4.500.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Garuda / Citilink / Batik</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Bintang 4 Standar</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Maks Rp 1.100.000 / malam</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-tabular-kpi text-label-lg text-on-surface font-semibold">Rp 450.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Makan, laundry &amp; saku</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span class="font-label-md text-label-md text-on-surface">Maks Rp 200.000 / hari</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-surface-container-low px-2 py-0.5 rounded-full">
+                      3 Hari Kerja
+                    </span>
+                  </td>
+                  <td class="py-space-md px-space-md text-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-space-md px-space-lg text-right">
+                    <div class="flex items-center justify-end gap-space-xs">
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors"
+                        title="Edit Kebijakan">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                        title="Duplikasi Aturan">
+                        <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-error flex items-center justify-center hover:bg-error hover:text-on-error transition-colors"
+                        title="Hapus">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 4: Staff & Operational Field -->
+                <tr class="hover:bg-surface-container-low/30 transition-colors">
+                  <td class="py-space-md px-space-lg">
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-label-sm text-primary font-bold">POL-IDN-STF-04</span>
+                      <span class="font-label-lg text-label-lg text-on-surface">Operasional, Tim Teknis &amp; Staff
+                        Lapangan</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Kereta Eksekutif, Penerbangan LCC
+                        Terdaftar</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Grade
+                      P1 - P2</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Maks Rp 2.500.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">LCC / Kereta Api Eksekutif</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Bintang 3 / Business Budget</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Maks Rp 650.000 / malam</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-tabular-kpi text-label-lg text-on-surface font-semibold">Rp 250.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Uang makan &amp; harian</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span class="font-label-md text-label-md text-on-surface">Maks Rp 120.000 / hari</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-surface-container-low px-2 py-0.5 rounded-full">
+                      5 Hari Kerja
+                    </span>
+                  </td>
+                  <td class="py-space-md px-space-md text-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-space-md px-space-lg text-right">
+                    <div class="flex items-center justify-end gap-space-xs">
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors"
+                        title="Edit Kebijakan">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                        title="Duplikasi Aturan">
+                        <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-error flex items-center justify-center hover:bg-error hover:text-on-error transition-colors"
+                        title="Hapus">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 5: Project Site Specific (Draft) -->
+                <tr class="opacity-75 hover:opacity-100 hover:bg-surface-container-low/30 transition-all">
+                  <td class="py-space-md px-space-lg">
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-label-sm text-tertiary font-bold">POL-IDN-SIT-05</span>
+                      <span class="font-label-lg text-label-lg text-on-surface">Proyek Tambang &amp; Remote Site
+                        Camp</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Penerbangan Charter &amp; Mess
+                        Perusahaan</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">All
+                      Grade (Project Assigned)</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Charter / Fixed Flight</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Site Procurement Arranged</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Company Camp Site</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Mess Karyawan / Fasilitas Internal</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <div class="flex flex-col">
+                      <span class="font-tabular-kpi text-label-lg text-on-surface font-semibold">Rp 300.000</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">Remote Site Hardship Allowance</span>
+                    </div>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span class="font-label-md text-label-md text-on-surface">Internal Shuttle Bus</span>
+                  </td>
+                  <td class="py-space-md px-space-md">
+                    <span
+                      class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary bg-surface-container-low px-2 py-0.5 rounded-full">
+                      7 Hari Kerja
+                    </span>
+                  </td>
+                  <td class="py-space-md px-space-md text-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-space-md px-space-lg text-right">
+                    <div class="flex items-center justify-end gap-space-xs">
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors"
+                        title="Edit Kebijakan">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors"
+                        title="Duplikasi Aturan">
+                        <span class="material-symbols-outlined text-[18px]">content_copy</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container-low text-error flex items-center justify-center hover:bg-error hover:text-on-error transition-colors"
+                        title="Hapus">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer / Pagination -->
+          <div
+            class="px-space-lg py-space-md bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-sm border-t border-surface-container-low">
+            <span class="text-tertiary font-body-sm text-body-sm">
+              Menampilkan <span class="font-semibold text-on-surface">5</span> dari <span
+                class="font-semibold text-on-surface">12</span> standar kebijakan perjalanan aktif
+            </span>
+            <div class="flex items-center gap-space-xs">
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container transition-colors disabled:opacity-40"
+                disabled="">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button
+                class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-label-md text-label-md">1</button>
+              <button
+                class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface font-label-md text-label-md">2</button>
+              <button
+                class="w-8 h-8 rounded-full hover:bg-surface-container text-on-surface font-label-md text-label-md">3</button>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Visual Compliance & Analytics Split Card -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg mb-space-xl">
+          <!-- Visual 1: Deviations Trend Mini Widget -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-space-sm">
+                <span class="font-label-lg text-label-lg text-on-surface">Tingkat Kepatuhan Kebijakan</span>
+                <span
+                  class="inline-flex px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">96.4%
+                  Compliance</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-tertiary">30 Hari terakhir dari total 418 perjalanan dinas
+                korporat.</p>
+            </div>
+            <div class="my-space-md">
+              <!-- Lightweight Inline SVG Sparkline -->
+              <svg class="w-full h-16 text-primary stroke-current fill-none" viewbox="0 0 300 60">
+                <path d="M0,45 Q30,48 60,35 T120,38 T180,20 T240,25 T300,10" stroke-linecap="round" stroke-width="3">
+                </path>
+                <path class="fill-primary-container opacity-10"
+                  d="M0,45 Q30,48 60,35 T120,38 T180,20 T240,25 T300,10 L300,60 L0,60 Z"></path>
+              </svg>
+            </div>
+            <div class="grid grid-cols-2 gap-space-sm pt-space-xs text-body-sm">
+              <div class="bg-surface-container-low p-space-sm rounded-lg">
+                <span class="text-tertiary block text-label-sm">Total Disetujui Otomatis</span>
+                <span class="font-tabular-kpi text-label-lg text-on-surface font-bold">402 Tiket</span>
+              </div>
+              <div class="bg-surface-container-low p-space-sm rounded-lg">
+                <span class="text-tertiary block text-label-sm">Eskalasi Deviasi</span>
+                <span class="font-tabular-kpi text-label-lg text-error font-bold">16 Tiket</span>
+              </div>
+            </div>
+          </div>
+          <!-- Visual 2: Matrix Overview -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-space-sm">
+                <span class="font-label-lg text-label-lg text-on-surface">Matriks Hierarki Approval Deviasi</span>
+                <span class="material-symbols-outlined text-secondary text-[20px]">account_tree</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-tertiary">Ketentuan otomatisasi eskalasi jika biaya melebihi
+                plafon.</p>
+            </div>
+            <div class="space-y-space-sm my-space-sm">
+              <div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+                <div
+                  class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm shrink-0">
+                  1</div>
+                <div class="flex flex-col">
+                  <span class="font-label-md text-label-md text-on-surface">Deviasi ≤ 10% di Atas Plafon</span>
+                  <span class="font-body-sm text-body-sm text-tertiary">Persetujuan otomatis didelegasikan ke Kepala
+                    Divisi / GM terkait.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-label-sm shrink-0">
+                  2</div>
+                <div class="flex flex-col">
+                  <span class="font-label-md text-label-md text-on-surface">Deviasi &gt; 10% (High Discrepancy)</span>
+                  <span class="font-body-sm text-body-sm text-tertiary">Wajib persetujuan tertulis dari Direktur
+                    Keuangan (CFO).</span>
+                </div>
+              </div>
+            </div>
+            <button
+              class="w-full py-space-xs rounded-full bg-surface-container text-secondary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">
+              Kelola Konfigurasi Eskalasi
+            </button>
+          </div>
+          <!-- Visual 3: Partner Airline & Hotel Integration -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-space-sm">
+                <span class="font-label-lg text-label-lg text-on-surface">Penyedia Terkoneksi (API Contract)</span>
+                <span
+                  class="inline-flex px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm">Live
+                  Sync</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-tertiary">Plafon terintegrasi langsung pada portal booking
+                mandiri karyawan.</p>
+            </div>
+            <div class="space-y-space-sm my-space-sm">
+              <div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-[18px]">airlines</span>
+                  <span class="font-label-md text-label-md text-on-surface">Garuda Indonesia Corporate Code</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-secondary">Diskon 12%</span>
+              </div>
+              <div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-[18px]">domain_add</span>
+                  <span class="font-label-md text-label-md text-on-surface">Accor &amp; Marriott Global Network</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-secondary">Fixed Rate</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-body-sm text-tertiary pt-space-xs">
+              <span>Sinkronisasi terakhir: 12 Menit lalu</span>
+              <span class="material-symbols-outlined text-[16px] text-primary">sync</span>
+            </div>
+          </div>
+        </div>
+        <!-- Modal / Flyout: Form Pembuatan Kebijakan Baru (Hidden by default, toggled via JS) -->
+        <div
+          class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-space-md"
+          id="modal-backdrop">
+          <div
+            class="bg-surface-container-lowest w-full max-w-2xl rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh] transition-all transform scale-95 opacity-0"
+            id="modal-container">
+            <!-- Modal Header -->
+            <div class="px-space-xl py-space-lg bg-surface-container-low/60 flex items-center justify-between">
+              <div class="flex flex-col">
+                <h2 class="font-headline-sm text-headline-sm text-on-surface">Buat Kebijakan Perjalanan Baru</h2>
+                <span class="font-body-sm text-body-sm text-tertiary">Tetapkan batas tarif transportasi, akomodasi, dan
+                  aturan per diem.</span>
+              </div>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                id="btn-close-modal">
+                <span class="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-space-xl overflow-y-auto space-y-space-lg flex-1">
+              <!-- Input Nama Kebijakan -->
+              <div class="space-y-space-xs">
+                <label class="block font-label-md text-label-md text-on-surface font-semibold">Nama Kebijakan Perjalanan
+                  <span class="text-error">*</span></label>
+                <input
+                  class="w-full px-space-md py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                  placeholder="Contoh: Standar Operasional Wilayah Sumatera - Lead Engineer" type="text" />
+              </div>
+              <!-- Grade Jabatan Checkboxes (Multiselect) -->
+              <div class="space-y-space-xs">
+                <label class="block font-label-md text-label-md text-on-surface font-semibold">Cakupan Grade Jabatan
+                  (Bisa pilih multi-level) <span class="text-error">*</span></label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs pt-1">
+                  <label
+                    class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container">
+                    <input class="rounded text-primary focus:ring-0" type="checkbox" />
+                    <span class="font-label-sm text-label-sm text-on-surface">BOD (Direksi)</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container">
+                    <input class="rounded text-primary focus:ring-0" type="checkbox" />
+                    <span class="font-label-sm text-label-sm text-on-surface">VP / GM (M2-M3)</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container">
+                    <input checked="" class="rounded text-primary focus:ring-0" type="checkbox" />
+                    <span class="font-label-sm text-label-sm text-on-surface">Manager (P3-P5)</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-space-sm rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container">
+                    <input class="rounded text-primary focus:ring-0" type="checkbox" />
+                    <span class="font-label-sm text-label-sm text-on-surface">Staff (P1-P2)</span>
+                  </label>
+                </div>
+              </div>
+              <!-- Plafon Nominal Inputs -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+                <div class="space-y-space-xs">
+                  <label class="block font-label-sm text-label-sm text-on-surface font-semibold">Plafon Tiket Pesawat /
+                    Leg</label>
+                  <div class="relative">
+                    <span
+                      class="absolute left-3 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-tertiary">Rp</span>
+                    <input
+                      class="w-full pl-9 pr-space-md py-2 rounded-xl bg-surface-container-low text-on-surface font-tabular-kpi text-label-md focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                      type="text" value="4.500.000" />
+                  </div>
+                </div>
+                <div class="space-y-space-xs">
+                  <label class="block font-label-sm text-label-sm text-on-surface font-semibold">Plafon Hotel /
+                    Malam</label>
+                  <div class="relative">
+                    <span
+                      class="absolute left-3 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-tertiary">Rp</span>
+                    <input
+                      class="w-full pl-9 pr-space-md py-2 rounded-xl bg-surface-container-low text-on-surface font-tabular-kpi text-label-md focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                      type="text" value="1.100.000" />
+                  </div>
+                </div>
+                <div class="space-y-space-xs">
+                  <label class="block font-label-sm text-label-sm text-on-surface font-semibold">Uang Harian (Per
+                    Diem)</label>
+                  <div class="relative">
+                    <span
+                      class="absolute left-3 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-tertiary">Rp</span>
+                    <input
+                      class="w-full pl-9 pr-space-md py-2 rounded-xl bg-surface-container-low text-on-surface font-tabular-kpi text-label-md focus:outline-none focus:bg-surface-container-lowest shadow-sm"
+                      type="text" value="450.000" />
+                  </div>
+                </div>
+              </div>
+              <!-- Toleransi Deviasi Otomatis -->
+              <div class="space-y-space-sm p-space-md rounded-xl bg-surface-container-low">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-secondary text-[20px]">tune</span>
+                  <span class="font-label-md text-label-md text-on-surface font-semibold">Parameter Toleransi Deviasi
+                    Biaya</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-tertiary">
+                  Sistem secara otomatis mengevaluasi harga tiket dinamis saat booking terjadi.
+                </p>
+                <div class="space-y-space-xs pt-space-xs">
+                  <div class="flex items-center justify-between text-body-sm">
+                    <span class="text-on-surface">Toleransi Level 1 (≤ 10%):</span>
+                    <span
+                      class="font-label-sm text-label-sm text-secondary bg-surface-container-lowest px-2 py-0.5 rounded-full shadow-sm">Approval
+                      Kepala Divisi</span>
+                  </div>
+                  <div class="flex items-center justify-between text-body-sm">
+                    <span class="text-on-surface">Toleransi Level 2 (&gt; 10%):</span>
+                    <span
+                      class="font-label-sm text-label-sm text-primary font-bold bg-surface-container-lowest px-2 py-0.5 rounded-full shadow-sm">Approval
+                      Direktur Keuangan</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Notification Note -->
+              <div class="flex items-start gap-space-xs text-body-sm text-tertiary">
+                <span class="material-symbols-outlined text-[16px] text-secondary mt-0.5">info</span>
+                <span>Perubahan pada travel policy ini akan memicu notifikasi pembaruan ke seluruh staf procurement dan
+                  travel agency partner rekanan.</span>
+              </div>
+            </div>
+            <!-- Modal Footer -->
+            <div class="px-space-xl py-space-md bg-surface-container-low/60 flex items-center justify-end gap-space-sm">
+              <button
+                class="px-space-lg py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm"
+                id="btn-cancel-modal">
+                Batal
+              </button>
+              <button
+                class="flex items-center gap-space-xs px-space-lg py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-sm hover:opacity-95 transition-all"
+                id="btn-save-policy">
+                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                <span>Simpan Kebijakan</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Inline Micro-Interactions Script -->
+        <script>
+            (function () {
+              const openModalBtn = document.getElementById('btn-open-modal');
+              const closeModalBtn = document.getElementById('btn-close-modal');
+              const cancelModalBtn = document.getElementById('btn-cancel-modal');
+              const savePolicyBtn = document.getElementById('btn-save-policy');
+              const modalBackdrop = document.getElementById('modal-backdrop');
+              const modalContainer = document.getElementById('modal-container');
+
+              function openModal() {
+                modalBackdrop.classList.remove('hidden');
+                setTimeout(() => {
+                  modalContainer.classList.remove('scale-95', 'opacity-0');
+                  modalContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+              }
+
+              function closeModal() {
+                modalContainer.classList.remove('scale-100', 'opacity-100');
+                modalContainer.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                  modalBackdrop.classList.add('hidden');
+                }, 200);
+              }
+
+              if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+              if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+              if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeModal);
+
+              if (modalBackdrop) {
+                modalBackdrop.addEventListener('click', (e) => {
+                  if (e.target === modalBackdrop) closeModal();
+                });
+              }
+
+              if (savePolicyBtn) {
+                savePolicyBtn.addEventListener('click', () => {
+                  savePolicyBtn.disabled = true;
+                  savePolicyBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Menyimpan...';
+                  setTimeout(() => {
+                    savePolicyBtn.disabled = false;
+                    savePolicyBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span> <span>Simpan Kebijakan</span>';
+                    closeModal();
+                  }, 700);
+                });
+              }
+            })();
+        </script>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

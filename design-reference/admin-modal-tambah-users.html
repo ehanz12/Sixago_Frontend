@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="web_dashboard" name="shell-type" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main>:first-child {
+        margin-top: 0 !important;
+      }
+
+      main>:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    id="tailwind-config">tailwind.config = {theme: {extend: {colors: {"surface-bright": "#f8f9ff", "tertiary": "#54615b", "surface-container-lowest": "#ffffff", "tertiary-container": "#92a099", "inverse-on-surface": "#eaf1ff", "background": "#f8f9ff", "primary": "#006e22", "on-surface-variant": "#3e4a3c", "primary-container": "#28b446", "tertiary-fixed-dim": "#bccac2", "surface-container": "#e6eeff", "on-secondary": "#ffffff", "primary-fixed-dim": "#5ce06c", "on-tertiary-container": "#2b3732", "outline-variant": "#bdcbb8", "surface-container-high": "#dee9fc", "secondary-container": "#aaf0b0", "inverse-primary": "#5ce06c", "secondary-fixed-dim": "#92d698", "tertiary-fixed": "#d8e6de", "on-error-container": "#93000a", "surface-container-low": "#eff4ff", "on-error": "#ffffff", "surface": "#f8f9ff", "on-primary-fixed-variant": "#005318", "error-container": "#ffdad6", "error": "#ba1a1a", "primary-fixed": "#7afd85", "on-primary-fixed": "#002105", "on-primary": "#ffffff", "surface-container-highest": "#d9e3f6", "on-tertiary": "#ffffff", "surface-dim": "#d0dbed", "on-secondary-fixed-variant": "#0b5223", "secondary": "#2a6b38", "on-tertiary-fixed-variant": "#3d4944", "inverse-surface": "#27313f", "outline": "#6d7b6a", "on-surface": "#121c2a", "surface-tint": "#006e22", "on-primary-container": "#003e0f", "on-secondary-fixed": "#002109", "on-background": "#121c2a", "secondary-fixed": "#adf3b3", "on-tertiary-fixed": "#121e19", "on-secondary-container": "#2e6f3c", "surface-variant": "#d9e3f6"}, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}, spacing: {"space-md": "1rem", "margin-mobile": "1rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "gutter": "1.5rem", "space-xl": "2rem", "margin": "2rem", "space-xs": "0.25rem", "gutter-mobile": "1rem"}, fontFamily: {"label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "tabular-kpi": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"]}, fontSize: {"label-md": ["0.75rem", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}], "headline-sm": ["1.125rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}], "label-sm": ["0.6875rem", {"lineHeight": "1.15", "letterSpacing": "0.04em", "fontWeight": "700"}], "body-md": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "body-lg": ["1rem", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}], "body-sm": ["0.75rem", {"lineHeight": "1.45", "letterSpacing": "0.01em", "fontWeight": "400"}], "tabular-kpi": ["1.75rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}], "headline-lg-mobile": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}], "headline-md": ["1.5rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "600"}], "display": ["3rem", {"lineHeight": "1.15", "letterSpacing": "-0.03em", "fontWeight": "700"}], "headline-lg": ["2rem", {"lineHeight": "1.25", "letterSpacing": "-0.02em", "fontWeight": "700"}], "label-lg": ["0.875rem", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}]}}}}</script>
+</head>
+
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+  <aside
+    class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between select-none">
+    <div class="flex flex-col h-full overflow-y-auto">
+      <div class="h-20 px-space-lg flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-space-sm"><img alt="SixAgo Brand Logo" class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XjSh1Wf-PVvWCsOGVQQrWui36Iwl-huN-FnUa6bj70OV-8HPfOP8LJELIvn_AiEyPAOBt4watHNhaRFkQGwh0WWBq7tU-h0ybJOLb5YNz36bFZWNRTlEBmGtQbtsWGTm81EFpAWeMunGr_O9eQkarCaM5bgpzoiuYyYfVegKGX2LTc88VqHDY13YLfmcqCeNBJ5_gqwwplydVlXgzx-WOGibr7BBCBNfxVCpLum7VYFjWQlv2uqFF87jg" />
+          <div class="flex flex-col"><span
+              class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">SixAgo</span><span
+              class="font-label-sm text-label-sm text-tertiary">Travel Governance</span></div>
+        </div><span
+          class="bg-surface-container-low text-secondary font-label-sm text-label-sm px-space-sm py-space-xs rounded-full">Enterprise</span>
+      </div>
+      <div class="px-space-md py-space-sm flex-1">
+        <nav class="space-y-space-md"
+          data-active-classes="bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm">
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Main
+            </div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="dashboard" href="#"><span class="font-label-lg text-label-lg">Dashboard</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="travel-requests" href="#"><span class="font-label-lg text-label-lg">Travel
+                Requests</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="approval-queue" href="#"><span class="font-label-lg text-label-lg">Approval Queue</span><span
+                class="bg-primary-container text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded-full">5</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="travel-advances" href="#"><span class="font-label-lg text-label-lg">Travel
+                Advances</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="reimbursements" href="#"><span class="font-label-lg text-label-lg">Reimbursements</span></a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Management &amp; Policy</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="policies" href="#"><span class="font-label-lg text-label-lg">Policies</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="projects" href="#"><span class="font-label-lg text-label-lg">Projects</span></a><a
+              aria-current="page"
+              class="flex items-center justify-between px-space-md py-space-sm transition-all bg-secondary-container text-on-secondary-container font-label-lg rounded-full shadow-sm"
+              data-path="users-and-roles" href="#"><span class="font-label-lg text-label-lg">Users &amp;
+                Roles</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="approval-hierarchy-and-delegation" href="#"><span class="font-label-lg text-label-lg">Approval
+                Hierarchy &amp; Delegation</span></a>
+          </div>
+          <div class="space-y-space-xs">
+            <div class="px-space-md pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-tertiary">
+              Analytics</div><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="reports-and-audit" href="#"><span class="font-label-lg text-label-lg">Reports &amp;
+                Audit</span></a><a
+              class="flex items-center justify-between px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all"
+              data-path="notifications" href="#"><span class="font-label-lg text-label-lg">Notifications</span></a>
+          </div>
+        </nav>
+      </div>
+      <div class="p-space-md m-space-md rounded-xl bg-surface-container-low shrink-0">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">help_center</span></div>
+          <div class="flex flex-col flex-1"><span class="font-label-md text-label-md text-on-surface">Enterprise Help
+              Desk</span><span class="font-body-sm text-body-sm text-tertiary">SLA 15-min Response</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="pl-72">
+    <header
+      class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-xl flex items-center justify-between">
+      <div class="flex items-center w-full max-w-lg">
+        <div class="relative w-full"><span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span><input
+            class="w-full pl-12 pr-space-md py-space-sm rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all"
+            placeholder="Cari perjalanan, tiket, ID request, atau karyawan..." type="text" /></div>
+      </div>
+      <div class="flex items-center gap-space-md">
+        <div
+          class="hidden xl:flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low rounded-full">
+          <span class="material-symbols-outlined text-secondary text-[18px]">domain</span><span
+            class="font-label-md text-label-md text-on-surface">PT Nusantara Dinamika Tbk</span></div><button
+          class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:opacity-95 transition-all"><span
+            class="material-symbols-outlined text-[18px]">add</span><span>Request Baru</span></button><button
+          class="relative w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"><span
+            class="material-symbols-outlined text-[20px]">notifications</span><span
+            class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-container"></span></button>
+        <div class="flex items-center gap-space-sm pl-space-sm"><img alt="Ratna Paramita"
+            class="w-8 h-8 rounded-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEMGYKyY9zw7L48nzXQcThDZxOVvDP7G21_emfexfptTZYkJKMI1QEVXzSoj-Myb1BIg0MoA5Y-2JRV_To09JzyJuX8WERVC5XkyGgJow7w5CFvqVE8UHuvpqeoX11aXHH7scn8PK55-K0Zaq0zORJ9QiCc0K63LTumJ1ygHG6Q8sdNEQY9ajN9vRx-APYo7KielcISkFykgN3O8MqfC14mXFWBNeInDxVxHaTh1forLNM1-pEdOvQHQ" />
+          <div class="hidden md:flex flex-col text-left"><span
+              class="font-label-md text-label-md text-on-surface leading-tight">Ratna Paramita</span><span
+              class="font-body-sm text-body-sm text-tertiary leading-tight">HR &amp; Travel Admin</span></div><span
+            class="material-symbols-outlined text-tertiary text-[18px] cursor-pointer">expand_more</span>
+        </div>
+      </div>
+    </header>
+    <main class="w-full pt-20 px-space-xl pb-space-xl bg-background">
+      <div class="flex flex-col w-full gap-space-lg">
+        <!-- Top Breadcrumb & Page Title Banner -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md">
+          <div class="flex flex-col gap-space-xs">
+            <div class="flex items-center gap-space-xs text-tertiary">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider">Master Data &amp; Organisasi</span>
+              <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Manajemen
+                Karyawan &amp; Pengguna</span>
+            </div>
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Manajemen Pengguna &amp; Akun
+              Karyawan</h1>
+            <p class="font-body-md text-body-md text-tertiary max-w-3xl">
+              Kelola master data pegawai, penugasan role, hierarki atasan langsung (Line Manager), dan status otorisasi
+              portal SixAgo secara terpusat.
+            </p>
+          </div>
+          <div class="flex items-center gap-space-sm self-start lg:self-center shrink-0">
+            <button
+              class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container-low transition-all font-label-lg text-label-lg">
+              <span class="material-symbols-outlined text-[20px] text-secondary">cloud_upload</span>
+              <span>Impor Data Karyawan (CSV/HRIS)</span>
+            </button>
+            <button
+              class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:brightness-105 active:scale-95 transition-all"
+              onclick="document.getElementById('side-drawer').classList.toggle('translate-x-full'); document.getElementById('drawer-overlay').classList.toggle('hidden');">
+              <span class="material-symbols-outlined text-[20px]">person_add</span>
+              <span>+ Tambah Pengguna Baru</span>
+            </button>
+          </div>
+        </div>
+        <!-- KPI Summary Cards (4 Cards) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+          <!-- Card 1 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary">Total Pengguna Aktif</span>
+              <div
+                class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-[22px]">group</span>
+              </div>
+            </div>
+            <div class="mt-space-md flex flex-col gap-space-xs">
+              <div class="font-tabular-kpi text-tabular-kpi text-on-surface">482 <span
+                  class="font-body-md text-body-md font-normal text-tertiary">Pegawai</span></div>
+              <div class="flex items-center gap-1.5 text-secondary">
+                <span class="material-symbols-outlined text-[16px]">trending_up</span>
+                <span class="font-label-sm text-label-sm font-semibold">+14 pengguna bulan ini</span>
+              </div>
+            </div>
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full bg-secondary-container/20 -z-0"></div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary">Menunggu Verifikasi HR</span>
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+                <span class="material-symbols-outlined text-[22px]">pending_actions</span>
+              </div>
+            </div>
+            <div class="mt-space-md flex flex-col gap-space-xs">
+              <div class="font-tabular-kpi text-tabular-kpi text-on-surface">6 <span
+                  class="font-body-md text-body-md font-normal text-tertiary">Akun Baru</span></div>
+              <div class="flex items-center gap-1.5 text-tertiary">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                <span class="font-label-sm text-label-sm">Perlu mapping role &amp; manager</span>
+              </div>
+            </div>
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full bg-surface-container-high/30 -z-0"></div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary">Otorisasi Approver</span>
+              <div class="w-10 h-10 rounded-full bg-surface-container text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[22px]">verified_user</span>
+              </div>
+            </div>
+            <div class="mt-space-md flex flex-col gap-space-xs">
+              <div class="font-tabular-kpi text-tabular-kpi text-on-surface">54 <span
+                  class="font-body-md text-body-md font-normal text-tertiary">Pejabat Otoritas</span></div>
+              <div class="flex items-center gap-1.5 text-tertiary">
+                <span class="font-label-sm text-label-sm">Manager / Kadiv / Direksi / CFO</span>
+              </div>
+            </div>
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full bg-surface-container-high/40 -z-0"></div>
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <span class="font-label-md text-label-md text-tertiary">Non-Aktif / Cuti</span>
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[22px]">person_off</span>
+              </div>
+            </div>
+            <div class="mt-space-md flex flex-col gap-space-xs">
+              <div class="font-tabular-kpi text-tabular-kpi text-on-surface">8 <span
+                  class="font-body-md text-body-md font-normal text-tertiary">Ditangguhkan</span></div>
+              <div class="flex items-center gap-1.5 text-tertiary">
+                <span class="font-label-sm text-label-sm">Akses pemesanan dinonaktifkan</span>
+              </div>
+            </div>
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full bg-surface-container-low/80 -z-0"></div>
+          </div>
+        </div>
+        <!-- Main Section: Filters & Unified Table Container -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+          <!-- Filter Controls Bar -->
+          <div
+            class="p-space-lg bg-surface-container-lowest flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+            <!-- Search Input -->
+            <div class="relative w-full xl:w-96">
+              <span
+                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span>
+              <input
+                class="w-full pl-11 pr-space-md py-2.5 rounded-full bg-surface-container-low text-on-surface placeholder-tertiary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all"
+                placeholder="Cari nama, NIK, email, atau jabatan..." type="text" />
+            </div>
+            <!-- Filter Dropdowns Pill Row -->
+            <div class="flex flex-wrap items-center gap-space-sm">
+              <!-- Departemen Filter -->
+              <div class="relative inline-flex items-center">
+                <select
+                  class="appearance-none pl-4 pr-9 py-2 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer shadow-sm">
+                  <option value="">Semua Departemen</option>
+                  <option value="it">IT &amp; Engineering</option>
+                  <option value="finance">Finance &amp; Accounting</option>
+                  <option value="sales">Sales &amp; Commercial</option>
+                  <option value="operational">Supply Chain &amp; Ops</option>
+                  <option value="hr">Human Capital</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-3 pointer-events-none text-tertiary text-[18px]">expand_more</span>
+              </div>
+              <!-- Role Filter -->
+              <div class="relative inline-flex items-center">
+                <select
+                  class="appearance-none pl-4 pr-9 py-2 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer shadow-sm">
+                  <option value="">Semua Role Sistem</option>
+                  <option value="employee">Employee</option>
+                  <option value="approver-l1">Approver L1 (Manager)</option>
+                  <option value="approver-l2">Approver L2 (Kadiv)</option>
+                  <option value="finance-admin">Finance Admin</option>
+                  <option value="super-admin">Super Admin</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-3 pointer-events-none text-tertiary text-[18px]">expand_more</span>
+              </div>
+              <!-- Status Filter -->
+              <div class="relative inline-flex items-center">
+                <select
+                  class="appearance-none pl-4 pr-9 py-2 rounded-full bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer shadow-sm">
+                  <option value="">Semua Status</option>
+                  <option value="active">Aktif</option>
+                  <option value="pending">Peninjauan HR</option>
+                  <option value="suspended">Ditangguhkan / Cuti</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-3 pointer-events-none text-tertiary text-[18px]">expand_more</span>
+              </div>
+              <!-- Reset Button -->
+              <button
+                class="w-9 h-9 rounded-full bg-surface-container-low text-tertiary hover:text-on-surface flex items-center justify-center transition-colors"
+                title="Reset Filter">
+                <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+              </button>
+            </div>
+          </div>
+          <!-- Table Container -->
+          <div class="w-full overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low text-tertiary">
+                  <th class="w-12 px-space-md py-3.5 text-center">
+                    <input class="rounded w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                      type="checkbox" />
+                  </th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider">Pegawai &amp;
+                    Kontak</th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider">Departemen &amp;
+                    Entitas</th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider">Jabatan &amp;
+                    Grade</th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider">Role SixAgo</th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider">Atasan Langsung
+                  </th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider">Status Akun</th>
+                  <th class="px-space-md py-3.5 font-label-sm text-label-sm uppercase tracking-wider text-right pr-6">
+                    Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-transparent">
+                <!-- Row 1 -->
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="px-space-md py-4 text-center">
+                    <input class="rounded w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                      type="checkbox" />
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-sm">
+                      <img class="w-10 h-10 rounded-full object-cover shrink-0"
+                        data-alt="Corporate headshot of an Indonesian male tech lead smiling in modern smart casual enterprise clothing with blurred background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWeAXkDHCHjbur3n4wfLaTa9acIWillZk5VxWKJxnVoadonW3xOlxRvxTPs7r1OXcapgzasW4UkOPwu--Uqbi0NYgsW_fSkZIs-82kqBfyyUz9EEPK6B40wV3iWxOO6-tXxArks7IeF9MxmjOkZ-ceeasIZVOR42PlgyvU2zfyvEB38pJJeawgLHMZmms4Ni6EDpXTvmYTZKCv3IeLvh9KgIIXSWqte-ZxR5hFmUodVB9XOp1FsPC7uQ" />
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-label-lg text-label-lg text-on-surface truncate">Bambang Sutejo</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">NIK: 2108-9412</span>
+                        <span
+                          class="font-body-sm text-body-sm text-secondary truncate">bambang.sutejo@nusantaradinamika.co.id</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">IT Infrastructure</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">PT Nusantara Dinamika Tbk</span>
+                      <span class="font-label-sm text-label-sm text-secondary">CC: IT-INFRA-01</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Lead Cloud Architect</span>
+                      <span
+                        class="inline-flex mt-1 items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm w-max">Grade
+                        P4</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
+                      Approver L1
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-xs">
+                      <img class="w-7 h-7 rounded-full object-cover"
+                        data-alt="Portrait photo of a confident Asian female senior technology executive in deep green suit background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuALGoSRve10raZyPlKMgj4Kbf02wUo5kjTL_duEiQDzhGqcSc5bWqrim0IQTP351tfT7_HAybAF-caNtENLjD0k3FGW_cD-PAPgbuEO050IF7EJLNYwczIa4CkfiXK5JbN48_fSdbVz1vD7Me4DuiYt4DfGNYiJ1oF0ST9JIpUYgt9P1UDMjdR4cfSykHcnM5Nwg7ywbqVHrWHrTQMrirKReVsB4Qjk-3yTHae6xXg0037wWugKwUtBsA" />
+                      <div class="flex flex-col">
+                        <span class="font-label-md text-label-md text-on-surface">Diana Kusuma</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">VP Engineering</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      Aktif
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4 text-right pr-6">
+                    <div class="inline-flex items-center gap-1.5">
+                      <button
+                        class="w-8 h-8 rounded-full bg-secondary-container/50 text-secondary hover:bg-secondary hover:text-on-secondary flex items-center justify-center transition-colors"
+                        title="Edit Data Pengguna">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors"
+                        title="Reset Password / Kirim Ulang Kredensial">
+                        <span class="material-symbols-outlined text-[16px]">lock_reset</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-error-container text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-colors"
+                        title="Nonaktifkan Akun">
+                        <span class="material-symbols-outlined text-[16px]">block</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="px-space-md py-4 text-center">
+                    <input class="rounded w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                      type="checkbox" />
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-sm">
+                      <img class="w-10 h-10 rounded-full object-cover shrink-0"
+                        data-alt="Portrait of an elegant Indonesian female finance officer in navy professional attire smiling gently in contemporary office"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1YSYpLgZsOrVv5qaI1htihOixHTQ9rUulrYnbV00RxNhLEVBoeXKPysFNphWTcfP9oyxYepWVZ-bfXpC52pbV2SQb55o2ExYNxirUfpCsZVrRxZ9O2FTs1By6FYq9qGPnqrZd_l0c32NU7Aep69whMCttaT8FCp8pedqm85xkNlD5PtexEYyuPblYVag6No5StKENRbgTEDH1QxadRvht2OSvnBDDvXtnL2pyVIA4XfCYxf0swPkD8g" />
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-label-lg text-label-lg text-on-surface truncate">Siti Nurhaliza</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">NIK: 2201-1109</span>
+                        <span
+                          class="font-body-sm text-body-sm text-secondary truncate">siti.nurhaliza@nusantaradinamika.co.id</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Finance &amp; Treasury</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">PT Nusantara Dinamika Tbk</span>
+                      <span class="font-label-sm text-label-sm text-secondary">CC: FIN-TREAS-03</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Senior Treasury Analyst</span>
+                      <span
+                        class="inline-flex mt-1 items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm w-max">Grade
+                        P3</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md">
+                      Finance Admin
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-xs">
+                      <div
+                        class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm text-on-surface">
+                        HS
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-label-md text-label-md text-on-surface">Hendra Setiawan</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">Head of Treasury</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      Aktif
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4 text-right pr-6">
+                    <div class="inline-flex items-center gap-1.5">
+                      <button
+                        class="w-8 h-8 rounded-full bg-secondary-container/50 text-secondary hover:bg-secondary hover:text-on-secondary flex items-center justify-center transition-colors"
+                        title="Edit Data Pengguna">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors"
+                        title="Reset Password / Kirim Ulang Kredensial">
+                        <span class="material-symbols-outlined text-[16px]">lock_reset</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-error-container text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-colors"
+                        title="Nonaktifkan Akun">
+                        <span class="material-symbols-outlined text-[16px]">block</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="px-space-md py-4 text-center">
+                    <input class="rounded w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                      type="checkbox" />
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-sm">
+                      <div
+                        class="w-10 h-10 rounded-full bg-surface-container-high text-primary font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+                        AR
+                      </div>
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-label-lg text-label-lg text-on-surface truncate">Ahmad Rizky Pratama</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">NIK: 2404-0018</span>
+                        <span
+                          class="font-body-sm text-body-sm text-secondary truncate">ahmad.rizky@nusantaradinamika.co.id</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Sales &amp; Enterprise Growth</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">PT Nusantara Dinamika Tbk</span>
+                      <span class="font-label-sm text-label-sm text-secondary">CC: SLS-ENT-04</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Account Executive</span>
+                      <span
+                        class="inline-flex mt-1 items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm w-max">Grade
+                        P2</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+                      Employee
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-xs">
+                      <div
+                        class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm text-on-surface">
+                        AW
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-label-md text-label-md text-on-surface">Agus Wijaya</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">Sales Director</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm">
+                      <span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+                      Pending Onboarding
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4 text-right pr-6">
+                    <div class="inline-flex items-center gap-1.5">
+                      <button
+                        class="w-8 h-8 rounded-full bg-secondary-container/50 text-secondary hover:bg-secondary hover:text-on-secondary flex items-center justify-center transition-colors"
+                        title="Mapping Data Pengguna">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors"
+                        title="Kirim Undangan Akses">
+                        <span class="material-symbols-outlined text-[16px]">forward_to_inbox</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-error-container text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-colors"
+                        title="Batalkan Akun">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="px-space-md py-4 text-center">
+                    <input class="rounded w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                      type="checkbox" />
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-sm">
+                      <img class="w-10 h-10 rounded-full object-cover shrink-0"
+                        data-alt="Portrait of an experienced Indonesian executive man in bespoke charcoal suit and crisp white collar with warm confident smile"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHcX5rxq2lIeSyzRa6YBiwUpFKe0YFS0Mt47ZVN46hmdlI8sDueYSbv83xAxQbq-6a8edrWCc4chbeLzHOcshIlsmlm4SFiL4fGYMD011fTsjSyjT9NbQ2QZpsYtiC60wLeD_dd0uEQv2Rl6wFM2vQWALxHL5O1qQjEqcKj58n6QfmGd7OT2Xp3KwILqJlpfxBD7Oqw88eLWt0XPP1GUNDbjeuNBmw8kC01B-1rS-c_IvZ6I1hrteH_g" />
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-label-lg text-label-lg text-on-surface truncate">R. Suryo Danunegoro</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">NIK: 1802-0004</span>
+                        <span
+                          class="font-body-sm text-body-sm text-secondary truncate">suryo.danunegoro@nusantaradinamika.co.id</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Executive Committee</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">PT Nusantara Dinamika Tbk</span>
+                      <span class="font-label-sm text-label-sm text-secondary">CC: BOD-EX-00</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Chief Financial Officer</span>
+                      <span
+                        class="inline-flex mt-1 items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm w-max">Direksi
+                        (BOD)</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md">
+                      Approver L2 (CFO)
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-xs">
+                      <div
+                        class="w-7 h-7 rounded-full bg-secondary-container text-secondary flex items-center justify-center font-label-sm text-label-sm">
+                        MD
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-label-md text-label-md text-on-surface">Michael Dharmawan</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">President Director</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      Aktif
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4 text-right pr-6">
+                    <div class="inline-flex items-center gap-1.5">
+                      <button
+                        class="w-8 h-8 rounded-full bg-secondary-container/50 text-secondary hover:bg-secondary hover:text-on-secondary flex items-center justify-center transition-colors"
+                        title="Edit Data Pengguna">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors"
+                        title="Reset Password / Kirim Ulang Kredensial">
+                        <span class="material-symbols-outlined text-[16px]">lock_reset</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-error-container text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-colors"
+                        title="Nonaktifkan Akun">
+                        <span class="material-symbols-outlined text-[16px]">block</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                  <td class="px-space-md py-4 text-center">
+                    <input class="rounded w-4 h-4 text-primary focus:ring-0 cursor-pointer accent-primary"
+                      type="checkbox" />
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-sm">
+                      <div
+                        class="w-10 h-10 rounded-full bg-surface-container-low text-tertiary font-headline-sm text-headline-sm flex items-center justify-center shrink-0">
+                        TW
+                      </div>
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-label-lg text-label-lg text-on-surface truncate">Tri Wulandari</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">NIK: 2110-6623</span>
+                        <span
+                          class="font-body-sm text-body-sm text-secondary truncate">tri.wulandari@nusantaradinamika.co.id</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">Human Capital &amp; GA</span>
+                      <span class="font-body-sm text-body-sm text-tertiary">PT Nusantara Dinamika Tbk</span>
+                      <span class="font-label-sm text-label-sm text-secondary">CC: HCGA-REC-02</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex flex-col">
+                      <span class="font-label-md text-label-md text-on-surface">HR Business Partner</span>
+                      <span
+                        class="inline-flex mt-1 items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm w-max">Grade
+                        P3</span>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">
+                      Super Admin
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <div class="flex items-center gap-space-xs">
+                      <div
+                        class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm text-on-surface">
+                        RP
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-label-md text-label-md text-on-surface">Ratna Paramita</span>
+                        <span class="font-body-sm text-body-sm text-tertiary">VP People &amp; Culture</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-space-md py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low text-tertiary font-label-sm text-label-sm">
+                      <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                      Cuti Panjang
+                    </span>
+                  </td>
+                  <td class="px-space-md py-4 text-right pr-6">
+                    <div class="inline-flex items-center gap-1.5">
+                      <button
+                        class="w-8 h-8 rounded-full bg-secondary-container/50 text-secondary hover:bg-secondary hover:text-on-secondary flex items-center justify-center transition-colors"
+                        title="Edit Data Pengguna">
+                        <span class="material-symbols-outlined text-[16px]">edit</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors"
+                        title="Aktivasi Kembali Akun">
+                        <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                      </button>
+                      <button
+                        class="w-8 h-8 rounded-full bg-error-container text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-colors"
+                        title="Hapus Akun">
+                        <span class="material-symbols-outlined text-[16px]">delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination Footer Bar -->
+          <div
+            class="px-space-lg py-space-md bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-md">
+            <div class="font-body-sm text-body-sm text-tertiary">
+              Menampilkan <span class="font-semibold text-on-surface">1 - 5</span> dari <span
+                class="font-semibold text-on-surface">482</span> pengguna terdaftar
+            </div>
+            <div class="flex items-center gap-space-xs">
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button
+                class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-sm">1</button>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors">2</button>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors">3</button>
+              <span class="px-1 text-tertiary font-body-sm">...</span>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors">61</button>
+              <button
+                class="w-8 h-8 rounded-full bg-surface-container-low text-tertiary flex items-center justify-center hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Integrated Side Drawer Overlay & Panel -->
+        <div
+          class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-inverse-surface/50 backdrop-blur-sm"
+          id="modal-container">
+          <div
+            class="relative w-full max-w-2xl bg-surface-container-lowest rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] border border-outline-variant/30 animate-in fade-in zoom-in duration-200">
+            <!-- Modal Header -->
+            <div
+              class="px-space-xl py-space-lg flex items-start justify-between border-b border-surface-container bg-surface-bright/50 shrink-0">
+              <div class="flex items-start gap-space-md">
+                <div
+                  class="w-11 h-11 rounded-full bg-secondary-container/40 text-primary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[24px]">person_add</span></div>
+                <div class="flex flex-col">
+                  <div class="flex items-center gap-space-xs">
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Tambah Karyawan &amp;
+                      Akun Baru</h2><span
+                      class="px-2 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm font-semibold">HR
+                      Portal</span>
+                  </div>
+                  <p class="font-body-sm text-body-sm text-tertiary mt-0.5">Registrasi profil pegawai, alokasi cost
+                    center divisi, dan hak akses persetujuan SixAgo</p>
+                </div>
+              </div><button
+                class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-surface-container text-tertiary hover:text-on-surface flex items-center justify-center transition-colors shadow-sm"
+                onclick="document.getElementById('modal-container').classList.add('hidden')"><span
+                  class="material-symbols-outlined text-[20px]">close</span></button>
+            </div><!-- Modal Body -->
+            <div class="overflow-y-auto px-space-xl py-space-lg space-y-space-lg flex-1">
+              <!-- Section 1: Data Identitas Pegawai -->
+              <div class="space-y-space-sm">
+                <div class="flex items-center gap-space-xs"><span
+                    class="w-6 h-6 rounded-full bg-secondary-container text-secondary flex items-center justify-center font-label-sm text-label-sm font-bold">1</span><span
+                    class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Data
+                    Identitas Pegawai</span></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">Nomor
+                      Induk Karyawan (NIK) <span class="text-error">*</span></label><input
+                      class="w-full px-space-md py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm border border-transparent focus:border-outline-variant transition-all"
+                      type="text" value="2405-0982" /></div>
+                  <div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">Nama
+                      Lengkap Sesuai Identitas <span class="text-error">*</span></label><input
+                      class="w-full px-space-md py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm border border-transparent focus:border-outline-variant transition-all"
+                      type="text" value="Rian Hidayat, S.T." /></div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">Email
+                      Korporat (SSO Active) <span class="text-error">*</span></label><input
+                      class="w-full px-space-md py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm border border-transparent focus:border-outline-variant transition-all"
+                      type="email" value="rian.hidayat@nusantaradinamika.co.id" /></div>
+                  <div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">No.
+                      WhatsApp Aktif (Notifikasi Dinas) <span class="text-error">*</span></label><input
+                      class="w-full px-space-md py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm border border-transparent focus:border-outline-variant transition-all"
+                      type="text" value="+62 812-3456-7890" /></div>
+                </div>
+              </div><!-- Section 2: Penempatan Organisasi & Kebijakan Plafon -->
+              <div class="space-y-space-sm pt-space-xs border-t border-surface-container">
+                <div class="flex items-center gap-space-xs pt-1"><span
+                    class="w-6 h-6 rounded-full bg-secondary-container text-secondary flex items-center justify-center font-label-sm text-label-sm font-bold">2</span><span
+                    class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Penempatan
+                    Organisasi &amp; Kebijakan Plafon</span></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="flex flex-col gap-1.5"><label
+                      class="font-label-md text-label-md text-on-surface">Departemen &amp; Cost Center <span
+                        class="text-error">*</span></label>
+                    <div class="relative"><select
+                        class="appearance-none w-full pl-space-md pr-9 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none cursor-pointer shadow-sm border border-transparent focus:border-outline-variant">
+                        <option selected="" value="IT-502">IT &amp; Rekayasa Sistem (CC-TECH-502)</option>
+                        <option value="FIN-101">Finance &amp; Treasury (CC-FIN-101)</option>
+                        <option value="SLS-202">Sales &amp; Enterprise Growth (CC-SLS-202)</option>
+                        <option value="HR-301">Human Capital &amp; GA (CC-HCGA-301)</option>
+                      </select><span
+                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-tertiary text-[18px]">expand_more</span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">Grade
+                      Jabatan (Plafon Perjalanan) <span class="text-error">*</span></label>
+                    <div class="relative"><select
+                        class="appearance-none w-full pl-space-md pr-9 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none cursor-pointer shadow-sm border border-transparent focus:border-outline-variant">
+                        <option value="p1">Grade P1 (Staff / Associate)</option>
+                        <option value="p2">Grade P2 (Specialist / Officer)</option>
+                        <option selected="" value="p3">Grade P3 (Senior Engineer / Lead)</option>
+                        <option value="p4">Grade P4 (Lead Architect / Manager)</option>
+                        <option value="m1">Grade M1 (Kadiv / Executive)</option>
+                      </select><span
+                        class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-tertiary text-[18px]">expand_more</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">Atasan
+                    Langsung (Line Manager / Approver L1) <span class="text-error">*</span></label>
+                  <div
+                    class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-outline-variant/40">
+                    <div class="flex items-center gap-space-sm"><img alt="Bambang Sutejo"
+                        class="w-9 h-9 rounded-full object-cover shrink-0"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWeAXkDHCHjbur3n4wfLaTa9acIWillZk5VxWKJxnVoadonW3xOlxRvxTPs7r1OXcapgzasW4UkOPwu--Uqbi0NYgsW_fSkZIs-82kqBfyyUz9EEPK6B40wV3iWxOO6-tXxArks7IeF9MxmjOkZ-ceeasIZVOR42PlgyvU2zfyvEB38pJJeawgLHMZmms4Ni6EDpXTvmYTZKCv3IeLvh9KgIIXSWqte-ZxR5hFmUodVB9XOp1FsPC7uQ" />
+                      <div class="flex flex-col"><span
+                          class="font-label-md text-label-md text-on-surface font-semibold">Bambang Sutejo</span><span
+                          class="font-body-sm text-body-sm text-tertiary">Lead Cloud Architect • IT
+                          Infrastructure</span></div>
+                    </div><span
+                      class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Approver
+                      L1 Terpilih</span>
+                  </div>
+                </div>
+              </div><!-- Section 3: Pengaturan Hak Akses SixAgo -->
+              <div class="space-y-space-sm pt-space-xs border-t border-surface-container">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-space-xs pt-1"><span
+                      class="w-6 h-6 rounded-full bg-secondary-container text-secondary flex items-center justify-center font-label-sm text-label-sm font-bold">3</span><span
+                      class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Pengaturan
+                      Hak Akses &amp; Kewenangan SixAgo</span></div><span
+                    class="text-tertiary font-body-sm text-body-sm">Multi-role diperbolehkan</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm"><label
+                    class="flex items-start gap-space-sm p-space-sm rounded-xl bg-secondary-container/20 border border-primary/30 cursor-pointer transition-all hover:bg-secondary-container/30"><input
+                      checked="" class="mt-1 rounded text-primary focus:ring-0 accent-primary w-4 h-4"
+                      type="checkbox" />
+                    <div class="flex flex-col"><span
+                        class="font-label-md text-label-md text-on-surface font-semibold">Employee /
+                        Traveler</span><span class="font-body-sm text-body-sm text-tertiary">Pembuatan Travel Request,
+                        booking armada dinas &amp; klaim reimburse</span></div>
+                  </label><label
+                    class="flex items-start gap-space-sm p-space-sm rounded-xl bg-secondary-container/20 border border-primary/30 cursor-pointer transition-all hover:bg-secondary-container/30"><input
+                      checked="" class="mt-1 rounded text-primary focus:ring-0 accent-primary w-4 h-4"
+                      type="checkbox" />
+                    <div class="flex flex-col"><span
+                        class="font-label-md text-label-md text-on-surface font-semibold">Approver Level 1</span><span
+                        class="font-body-sm text-body-sm text-tertiary">Otorisasi tiket dan biaya bawahan langsung
+                        sesuai plafon tim</span></div>
+                  </label><label
+                    class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low border border-transparent cursor-pointer transition-all hover:bg-surface-container"><input
+                      class="mt-1 rounded text-primary focus:ring-0 accent-primary w-4 h-4" type="checkbox" />
+                    <div class="flex flex-col"><span
+                        class="font-label-md text-label-md text-on-surface font-semibold">Finance
+                        Verificator</span><span class="font-body-sm text-body-sm text-tertiary">Audit pengeluaran
+                        operasional, verifikasi invoice &amp; disbursement</span></div>
+                  </label><label
+                    class="flex items-start gap-space-sm p-space-sm rounded-xl bg-surface-container-low border border-transparent cursor-pointer transition-all hover:bg-surface-container"><input
+                      class="mt-1 rounded text-primary focus:ring-0 accent-primary w-4 h-4" type="checkbox" />
+                    <div class="flex flex-col"><span
+                        class="font-label-md text-label-md text-on-surface font-semibold">Corporate
+                        Administrator</span><span class="font-body-sm text-body-sm text-tertiary">Konfigurasi master
+                        policy, budget rule divisi, dan audit trail</span></div>
+                  </label></div><!-- Toggle switch for Invitation -->
+                <div
+                  class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low mt-space-sm">
+                  <div class="flex items-center gap-space-sm"><span
+                      class="material-symbols-outlined text-secondary text-[22px]">mark_email_read</span>
+                    <div class="flex flex-col"><span
+                        class="font-label-md text-label-md text-on-surface font-semibold">Kirim Undangan Aktivasi &amp;
+                        Kredensial Langsung</span><span class="font-body-sm text-body-sm text-tertiary">Akan dikirimkan
+                        tautan buat password via Email Korporat &amp; WhatsApp</span></div>
+                  </div>
+                  <div class="relative inline-flex items-center cursor-pointer"><input checked="" class="sr-only peer"
+                      id="invitation-toggle" type="checkbox" />
+                    <div
+                      class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- Modal Footer -->
+            <div
+              class="px-space-xl py-space-md flex items-center justify-between border-t border-surface-container bg-surface-bright/70 shrink-0">
+              <div class="flex items-center gap-1.5 text-tertiary text-body-sm"><span
+                  class="material-symbols-outlined text-[18px] text-primary">security</span><span
+                  class="font-label-sm text-label-sm">Tervalidasi ISO/IEC 27001</span></div>
+              <div class="flex items-center gap-space-sm"><button
+                  class="px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-tertiary hover:text-on-surface border border-outline-variant font-label-lg text-label-lg shadow-sm hover:bg-surface-container transition-all"
+                  onclick="document.getElementById('modal-container').classList.add('hidden')"
+                  type="button">Batal</button><button
+                  class="flex items-center gap-space-xs px-space-xl py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm hover:brightness-105 active:scale-95 transition-all"
+                  onclick="document.getElementById('modal-container').classList.add('hidden')" type="button"><span
+                    class="material-symbols-outlined text-[20px]">check_circle</span><span>Simpan &amp; Daftarkan
+                    Karyawan</span></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
