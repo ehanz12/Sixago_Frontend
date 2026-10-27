@@ -50,32 +50,32 @@ async function handleSubmit() {
     <div class="flex flex-col items-center text-center">
       <img
         alt="SixAgo Brand Logo"
-        class="h-10 w-auto mix-blend-multiply"
+        class="h-20 w-auto mix-blend-multiply"
         :src="logoSixAgo"
-        width="40"
-        height="40"
+        width="60"
+        height="60"
         loading="eager"
         decoding="async"
       >
       <div class="inline-flex items-center gap-1.5 px-2.5 py-1 mt-[18px] rounded-full bg-surface-container-low text-secondary text-[11px] font-semibold tracking-wider">
-        <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings:'FILL' 1" aria-hidden="true">flight_takeoff</span>
+        <span class="material-symbols-outlined text-[17px] text-primary" style="font-variation-settings:'FILL' 1" aria-hidden="true">flight_takeoff</span>
         <span>ENTERPRISE GOVERNANCE</span>
       </div>
-      <h1 class="text-lg font-bold tracking-tight text-on-surface mt-2.5">Masuk ke SixAgo Portal</h1>
-      <p class="text-xs text-on-surface-variant mt-3">Sistem Manajemen Perjalanan Dinas Korporat Terpadu</p>
+      <h1 class="text-2xl font-bold tracking-tight text-on-surface mt-2.5">Masuk ke SixAgo Portal</h1>
+      <p class="text-[16px] text-on-surface-variant mt-3">Sistem Manajemen Perjalanan Dinas Korporat Terpadu</p>
     </div>
 
     <!-- Form -->
-    <form class="w-full mt-14" novalidate @submit.prevent="handleSubmit">
+    <form class="w-full mt-10" novalidate @submit.prevent="handleSubmit">
       <!-- Email / NIK -->
       <div>
-        <label class="block text-[13px] font-medium text-on-surface" for="corporateId">Email Perusahaan / NIK</label>
+        <label class="block text-[20px] font-medium text-on-surface" for="corporateId">Email Perusahaan / NIK</label>
         <div class="relative flex items-center mt-2.5">
           <span class="material-symbols-outlined absolute left-3.5 text-muted pointer-events-none text-[20px]" aria-hidden="true">alternate_email</span>
           <input
             id="corporateId"
             v-model="corporateId"
-            class="w-full h-[41px] pl-10 pr-4 rounded-full bg-surface-container-low text-on-surface text-sm placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:bg-surface-container-lowest transition-all"
+            class="w-full h-[60px] pl-10 pr-4 rounded-full bg-surface-container-low text-on-surface text-sm placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:bg-surface-container-lowest transition-all"
             name="corporateId"
             placeholder="nama@perusahaan.co.id"
             required
@@ -83,23 +83,21 @@ async function handleSubmit() {
             autocomplete="username"
           >
         </div>
-        <p class="text-[11px] text-outline mt-2 px-2">Gunakan akun SSO resmi atau NIK 8-digit terdaftar</p>
       </div>
 
       <!-- Password -->
       <div class="mt-6">
         <div class="flex items-center justify-between px-1">
-          <label class="block text-[13px] font-medium text-on-surface" for="passwordField">Kata Sandi</label>
-          <span class="text-[13px] text-muted" title="Reset password mandiri belum tersedia — hubungi Super Admin">Lupa Password? Hubungi Admin</span>
+          <label class="block text-[20px] font-medium text-on-surface" for="passwordField">Kata Sandi</label>
         </div>
         <div class="relative flex items-center mt-2.5">
-          <span class="material-symbols-outlined absolute left-3.5 text-muted pointer-events-none text-[20px]" aria-hidden="true">lock</span>
+          <span class="material-symbols-outlined absolute left-3.5 text-muted pointer-events-none text-[21px]" aria-hidden="true">lock</span>
           <input
             id="passwordField"
             v-model="password"
-            class="w-full h-[41px] pl-10 pr-11 rounded-full bg-surface-container-low text-on-surface text-sm placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:bg-surface-container-lowest transition-all"
+            class="w-full h-[60px] pl-10 pr-11 rounded-full bg-surface-container-low text-on-surface text-sm placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:bg-surface-container-lowest transition-all"
             name="password"
-            placeholder="••••••••••••"
+            placeholder="Lupa Password? Hubungi Admin"
             required
             :type="showPassword ? 'text' : 'password'"
             autocomplete="current-password"
@@ -115,19 +113,12 @@ async function handleSubmit() {
         </div>
       </div>
 
-      <!-- Sesi selalu per-perangkat (token Sanctum); tidak ada opsi ingat-saya -->
-      <div class="flex items-center justify-between mt-6">
-        <span class="text-xs text-on-surface-variant">Sesi berlaku di perangkat ini. Gunakan "Keluar Semua Perangkat" di Profil untuk mencabut semua sesi.</span>
-        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-muted bg-surface-container-low px-2 py-0.5 rounded-full">
-          <span class="material-symbols-outlined text-[13px] text-primary" aria-hidden="true">verified_user</span>
-          Tersertifikasi
-        </span>
-      </div>
+
 
       <!-- Submit -->
       <div class="mt-7">
         <button
-          class="w-full h-[41px] px-6 rounded-full bg-primary hover:opacity-95 active:scale-[0.98] text-sm font-semibold text-white shadow-md hover:shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+          class="w-full h-[50px] px-6 rounded-full bg-primary hover:opacity-95 active:scale-[0.98] text-sm font-semibold text-white shadow-md hover:shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-60"
           type="submit"
           :disabled="submitLoading"
         >
